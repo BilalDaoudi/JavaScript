@@ -1,0 +1,59 @@
+<style>
+.pieChart {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: lightgray;
+}
+
+.slice {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip: rect(0, 200px, 200px, 100px);
+  border-radius: 50%;
+}
+
+.slice:nth-child(1) {
+  background: conic-gradient(
+    red 0%,
+    red var(--value),
+    blue var(--value),
+    blue 100%
+  );
+  transform: rotate(0deg);
+}
+
+.slice:nth-child(2) {
+  background: conic-gradient(
+    red 0%,
+    red var(--value),
+    blue var(--value),
+    blue 100%
+  );
+  transform: rotate(90deg);
+}
+
+[data-value='25'] {
+  --value: 25%;
+  clip: rect(auto, auto, auto, 100px);
+}
+
+[data-value='75'] {
+  --value: 75%;
+  clip: rect(auto, 100px, auto, auto);
+}
+
+</style>
+<script>
+  function imprimerPage() {
+  window.print();
+}
+</script>
+<div class="pieChart">
+  <button onclick="imprimerPage()">Imprimer</button>
+    <div class="slice" data-value="25"></div>
+    <div class="slice" data-value="75"></div>
+  </div>
+  

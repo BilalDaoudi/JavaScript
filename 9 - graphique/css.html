@@ -1,0 +1,47 @@
+<style>
+  .pie-chart {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.slice {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip: rect(0, 100px, 200px, 100px); /* Délimite la moitié du cercle */
+  border-radius: 50%;
+}
+
+.slice:nth-child(1) {
+  transform: rotate(0deg);
+}
+
+.slice:nth-child(2) {
+  transform: rotate(144deg); /* 60% de 360 degrés */
+}
+
+.slice::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.slice:nth-child(1)::before {
+  background-color: #3498db; /* Couleur du premier segment */
+}
+
+.slice:nth-child(2)::before {
+  background-color: #e74c3c; /* Couleur du deuxième segment */
+}
+x
+</style>
+<div class="pie-chart">
+  <div class="slice" data-percent="60"></div>
+  <div class="slice" data-percent="40"></div>
+</div>

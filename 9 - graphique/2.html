@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Diagramme circulaire</title>
+  <script src="chart.js"></script>
+</head>
+<body>
+    <div style="width: 400px;">
+  <canvas id="pieChart" ></canvas>
+    </div>
+  <script>
+    // Données pour le diagramme
+    var data = {
+      labels: ['60% - 60 personnes', '40% - personnes'],
+      datasets: [{
+        data: [60, 40],
+        backgroundColor: ['green', 'red']
+      }]
+    };
+
+    // Configuration du diagramme
+    var options = {
+      responsive: true,
+      legend: {
+        display: false
+      },
+      tooltips: {
+        enabled: true
+      },
+      plugins: {
+        datalabels: {
+          formatter: (value, ctx) => {
+            let label = ctx.chart.data.labels[ctx.dataIndex];
+            return label + ' (' + value + '%)';
+          },
+          color: '#fff',
+          display: 'auto'
+        }
+      }
+    };
+
+    // Récupération du contexte du canvas
+    var ctx = document.getElementById('pieChart').getContext('2d');
+
+    // Création du diagramme circulaire
+    var myPieChart = new Chart(ctx, {
+      type: 'pie',
+      data: data,
+      options: options
+    });
+  </script>
+</body>
+</html>
