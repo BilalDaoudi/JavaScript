@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+</head>
+<body>
+    <div class="container">
+        <div class="form-group row">
+            <div class="col-md-4">
+                <select id="selectSearch" class="form-control">
+                    <option value="0">Choisir un critère de recherche</option>
+                    <option value="1">ID</option>
+                    <option value="2">Nom</option>
+                    <option value="3">Matricule</option>
+                    <option value="4">Genre</option>
+                    <option value="5">Date de naissance</option>
+                    <option value="6">Date de création</option>
+                </select>
+            </div>
+            <div id="searchField" class="col-md-4">
+                <input type="text" id="searchInput" class="form-control" placeholder="Entrez votre recherche">
+            </div>
+            <div class="col-md-4">
+                <button id="searchButton" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+    </div>
+
+    <table class="table" id="tableau">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Matricule</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">Date de création</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Les lignes de données iront ici -->
+        </tbody>
+    </table>
+
+    <script>
+        // Votre tableau de personnes
+        var personnes = [
+            ["1", "img/1.png", "Daoudi", "XXX", "Homme", "01/01/1990", "01/05/2024"],
+            // Ajoutez d'autres entrées ici si nécessaire
+        ];
+
+        // Récupérer la référence du corps du tableau
+        var tbody = document.querySelector('#tableau tbody');
+
+        // Boucler à travers les données et les ajouter au tableau
+        personnes.forEach(function (personne) {
+            var tr = document.createElement('tr');
+            personne.forEach(function (info) {
+                var td = document.createElement('td');
+                // Si l'info est une URL, créer une balise img
+                if (info.startsWith('img/')) {
+                    var img = document.createElement('img');
+                    img.src = info;
+                    img.alt = "Photo de profil";
+                    td.appendChild(img);
+                } else {
+                    td.textContent = info;
+                }
+                tr.appendChild(td);
+            });
+            // Ajouter une action (par exemple, un bouton pour supprimer) à chaque ligne si nécessaire
+            var actionTd = document.createElement('td');
+            var deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Supprimer';
+            deleteBtn.addEventListener('click', function () {
+                tr.remove();
+            });
+            actionTd.appendChild(deleteBtn);
+            tr.appendChild(actionTd);
+            tbody.appendChild(tr);
+        });
+
+        function toggleSearchField() {
+            var searchType = document.getElementById('selectSearch').value;
+            var searchFieldDiv = document.getElementById('searchField');
+            searchFieldDiv.innerHTML = ''; // Clear previous search field content
+            if (searchType == '4') { // If search type is "Genre"
+                var maleRadio = document.createElement('input');
+                maleRadio.type = 'radio';
+                maleRadio.name = 'gender';
+                maleRadio.value = 'Homme';
+                maleRadio.id = 'maleRadio';
+                var maleLabel = document.createElement('label');
+                maleLabel.htmlFor = 'maleRadio';
+                maleLabel.appendChild(document.createTextNode('Homme'));
+
+                var femaleRadio = document.createElement('input');
+                femaleRadio.type = 'radio';
+                femaleRadio.name = 'gender';
+                femaleRadio.value = 'Femme';
+                femaleRadio.id = 'femaleRadio';
+                var femaleLabel = document.createElement('label');
+                femaleLabel.htmlFor = 'femaleRadio';
+                femaleLabel.appendChild(document.createTextNode('Femme'));
+
+                searchFieldDiv.appendChild(maleRadio);
+                searchFieldDiv.appendChild(maleLabel);
+                searchFieldDiv.appendChild(document.createElement('br'));
+                searchFieldDiv.appendChild(femaleRadio);
+                searchFieldDiv.appendChild(femaleLabel);
+            } else if (searchType == '5' || searchType == '6') { // If search type is "Date de naissance" or "Date de création"
+                var startDateInput = document.createElement('input');
+                startDateInput.type = 'date';
+                startDateInput.id = 'startDateInput';
+                startDateInput.className = 'form-control';
+
+                var endDateInput = document.createElement('input');
+                endDateInput.type = 'date';
+                endDateInput.id = 'endDateInput';
+                endDateInput.className = 'form-control';
+
+                searchFieldDiv.appendChild(startDateInput);
+                searchFieldDiv.appendChild(document.createElement('br'));
+                searchFieldDiv.appendChild(endDateInput);
+            } else { // For other search types, default to text input
+                var searchInput = document.createElement('input');
+                searchInput.type = 'text';
+                searchInput.id = 'searchInput';
+                searchInput.className = 'form-control';
+                searchInput.placeholder = 'Entrez votre recherche';
+
+                searchFieldDiv.appendChild(searchInput);
+            }
+        }
+
+        document.getElementById('selectSearch').addEventListener('change', toggleSearchField);
+        toggleSearchField();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Personnes</title>
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <select id="perPageSelect" class="form-control">
+                        <option value="5">5 lignes</option>
+                        <option value="10">10 lignes</option>
+                        <option value="25">25 lignes</option>
+                        <option value="50">50 lignes</option>
+                        <option value="100">100 lignes</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <table class="table" id="tableau">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Matricule</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Date de naissance</th>
+                    <th scope="col">Date de création</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes de données iront ici -->
+            </tbody>
+        </table>
+
+        <div id="pagination" class="container">
+            <ul class="pagination justify-content-center">
+                <!-- Les liens de pagination iront ici -->
+            </ul>
+        </div>
+
+        <script>
+        var personnes = [
+            ["1", "img/1.png", "Daoudi", "XXX", "Homme", "01/01/1990", "01/05/2024"],
+            ["2", "img/2.png", "Smith", "YYY", "Homme", "02/02/1991", "02/06/2024"],
+            ["3", "img/3.png", "Johnson", "ZZZ", "Femme", "03/03/1992", "03/07/2024"],
+            ["4", "img/4.png", "Brown", "ABC", "Homme", "04/04/1993", "04/08/2024"],
+            ["5", "img/5.png", "Wilson", "DEF", "Femme", "05/05/1994", "05/09/2024"],
+            ["6", "img/6.png", "Martinez", "GHI", "Homme", "06/06/1995", "06/10/2024"],
+            ["7", "img/7.png", "Anderson", "JKL", "Femme", "07/07/1996", "07/11/2024"],
+            ["8", "img/8.png", "Taylor", "MNO", "Homme", "08/08/1997", "08/12/2024"],
+            ["9", "img/9.png", "Thomas", "PQR", "Femme", "09/09/1998", "09/01/2025"],
+            ["10", "img/10.png", "Hernandez", "STU", "Homme", "10/10/1999", "10/02/2025"],
+            ["11", "img/11.png", "Garcia", "VWX", "Femme", "11/11/2000", "11/03/2025"],
+            ["12", "img/12.png", "Lopez", "YZA", "Homme", "12/12/2001", "12/04/2025"],
+        ];
+
+        var perPage = 5;
+        var tbody = document.querySelector('#tableau tbody');
+        var paginationUl = document.querySelector('#pagination ul');
+
+        // Fonction pour afficher les données avec pagination
+        function displayData(page) {
+            tbody.innerHTML = '';
+            var startIndex = (page - 1) * perPage;
+            var endIndex = Math.min(startIndex + perPage, personnes.length);
+            for (var i = startIndex; i < endIndex; i++) {
+                var tr = document.createElement('tr');
+                personnes[i].forEach(function (info) {
+                    var td = document.createElement('td');
+                    // Si l'info est une URL, créer une balise img
+                    if (info.startsWith('img/')) {
+                        var img = document.createElement('img');
+                        img.src = info;
+                        img.alt = "Photo de profil";
+                        td.appendChild(img);
+                    } else {
+                        td.textContent = info;
+                    }
+                    tr.appendChild(td);
+                });
+                // Ajouter une action (par exemple, un bouton pour supprimer) à chaque ligne si nécessaire
+                var actionTd = document.createElement('td');
+                var deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Supprimer';
+                deleteBtn.addEventListener('click', function () {
+                    tr.remove();
+                });
+                actionTd.appendChild(deleteBtn);
+                tr.appendChild(actionTd);
+                tbody.appendChild(tr);
+            }
+        }
+function displayPrevNextButtons(currentPage, numPages) {
+    var prevLi = document.createElement('li');
+    prevLi.className = 'page-item';
+    var prevLink = document.createElement('a');
+    prevLink.className = 'page-link';
+    prevLink.href = '#';
+    prevLink.textContent = 'Précédent';
+    prevLink.addEventListener('click', function () {
+        if (currentPage > 1) {
+            displayData(currentPage - 1);
+            displayPagination(currentPage - 1);
+        }
+    });
+    prevLi.appendChild(prevLink);
+    var firstChild = paginationUl.firstChild;
+
+paginationUl.insertBefore(prevLi, firstChild);
+
+    var nextLi = document.createElement('li');
+    nextLi.className = 'page-item';
+    var nextLink = document.createElement('a');
+    nextLink.className = 'page-link';
+    nextLink.href = '#';
+    nextLink.textContent = 'Suivant';
+    nextLink.addEventListener('click', function () {
+        if (currentPage < numPages) {
+            displayData(currentPage + 1);
+            displayPagination(currentPage + 1);
+        }
+    });
+    nextLi.appendChild(nextLink);
+    paginationUl.appendChild(nextLi);
+}
+
+function displayPagination(currentPage) {
+    paginationUl.innerHTML = '';
+    var numPages = Math.ceil(personnes.length / perPage);
+    var totalPagesToShow = 3; // Nombre total de pages à afficher
+    var startPage = Math.max(1, currentPage - Math.floor(totalPagesToShow / 2)); // Page de début
+    var endPage = Math.min(startPage + totalPagesToShow - 1, numPages); // Page de fin
+
+    // Assurer que le nombre total de pages affichées est égal à totalPagesToShow
+    startPage = Math.max(1, endPage - totalPagesToShow + 1);
+
+    // Afficher les numéros de page
+    for (var i = startPage; i <= endPage; i++) {
+        var li = document.createElement('li');
+        li.className = 'page-item';
+        var a = document.createElement('a');
+        a.className = 'page-link';
+        a.href = '#';
+        a.textContent = i;
+        if (i === currentPage) {
+            li.classList.add('active'); // Ajouter une classe pour indiquer la page actuelle
+        }
+        a.addEventListener('click', function () {
+            displayData(parseInt(this.textContent));
+            displayPagination(parseInt(this.textContent));
+        });
+        li.appendChild(a);
+        paginationUl.appendChild(li);
+    }
+
+    displayPrevNextButtons(currentPage, numPages);
+}
+
+        displayData(1);
+        displayPagination(1);
+
+        document.getElementById('perPageSelect').addEventListener('change', function () {
+            perPage = parseInt(this.value);
+            displayData(1);
+            displayPagination(1);
+        });
+
+    </script>
+    </body>
+</html>

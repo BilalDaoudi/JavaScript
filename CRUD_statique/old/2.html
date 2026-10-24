@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+</head>
+<body>
+    <div class="container">
+        <div class="form-group row">
+            <div class="col-md-4">
+                <select id="selectSearch" class="form-control">
+                    <option value="0">Choisir un critère de recherche</option>
+                    <option value="1">ID</option>
+                    <option value="2">Nom</option>
+                    <option value="3">Matricule</option>
+                    <option value="4">Genre</option>
+                    <option value="5">Date de naissance</option>
+                    <option value="6">Date de création</option>
+                </select>
+            </div>
+            <div id="searchField" class="col-md-4">
+                <input type="text" id="searchInput" class="form-control" placeholder="Entrez votre recherche">
+            </div>
+            <div class="col-md-2">
+                <button id="searchButton" class="btn btn-primary">Rechercher</button>
+            </div>
+            <div class="col-md-2">
+                <select id="perPageSelect" class="form-control">
+                    <option value="5">5 lignes</option>
+                    <option value="10">10 lignes</option>
+                    <option value="25">25 lignes</option>
+                    <option value="50">50 lignes</option>
+                    <option value="100">100 lignes</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <table class="table" id="tableau">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Matricule</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">Date de création</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Les lignes de données iront ici -->
+        </tbody>
+    </table>
+
+    <div id="pagination" class="container">
+        <ul class="pagination justify-content-center">
+            <!-- Les liens de pagination iront ici -->
+        </ul>
+    </div>
+
+    <script>
+        var personnes = [
+    ["1", "img/1.png", "Daoudi", "XXX", "Homme", "01/01/1990", "01/05/2024"],
+    ["2", "img/2.png", "Smith", "YYY", "Homme", "02/02/1991", "02/06/2024"],
+    ["3", "img/3.png", "Johnson", "ZZZ", "Femme", "03/03/1992", "03/07/2024"],
+    ["4", "img/4.png", "Brown", "ABC", "Homme", "04/04/1993", "04/08/2024"],
+    ["5", "img/5.png", "Wilson", "DEF", "Femme", "05/05/1994", "05/09/2024"],
+    ["6", "img/6.png", "Martinez", "GHI", "Homme", "06/06/1995", "06/10/2024"],
+    ["7", "img/7.png", "Anderson", "JKL", "Femme", "07/07/1996", "07/11/2024"],
+    ["8", "img/8.png", "Taylor", "MNO", "Homme", "08/08/1997", "08/12/2024"],
+    ["9", "img/9.png", "Thomas", "PQR", "Femme", "09/09/1998", "09/01/2025"],
+    ["10", "img/10.png", "Hernandez", "STU", "Homme", "10/10/1999", "10/02/2025"],
+    ["11", "img/11.png", "Garcia", "VWX", "Femme", "11/11/2000", "11/03/2025"],
+    ["12", "img/12.png", "Lopez", "YZA", "Homme", "12/12/2001", "12/04/2025"],
+    ["13", "img/13.png", "Perez", "BCD", "Femme", "13/01/2002", "13/05/2025"],
+    ["14", "img/14.png", "Sanchez", "EFG", "Homme", "14/02/2003", "14/06/2025"],
+    ["15", "img/15.png", "Ramirez", "HIJ", "Femme", "15/03/2004", "15/07/2025"],
+    ["16", "img/16.png", "Gonzalez", "KLM", "Homme", "16/04/2005", "16/08/2025"],
+    ["17", "img/17.png", "Torres", "NOP", "Femme", "17/05/2006", "17/09/2025"],
+    ["18", "img/18.png", "Rivera", "QRS", "Homme", "18/06/2007", "18/10/2025"],
+    ["19", "img/19.png", "Rodriguez", "TUV", "Femme", "19/07/2008", "19/11/2025"],
+    ["20", "img/20.png", "Martinez", "WXY", "Homme", "20/08/2009", "20/12/2025"],
+    ["21", "img/21.png", "Hernandez", "ZAB", "Femme", "21/09/2010", "21/01/2026"],
+    ["22", "img/22.png", "Garcia", "CDE", "Homme", "22/10/2011", "22/02/2026"],
+    ["23", "img/23.png", "Lopez", "FGH", "Femme", "23/11/2012", "23/03/2026"],
+    ["24", "img/24.png", "Perez", "IJK", "Homme", "24/12/2013", "24/04/2026"],
+    ["25", "img/25.png", "Sanchez", "LMN", "Femme", "25/01/2014", "25/05/2026"],
+    ["26", "img/26.png", "Ramirez", "OPQ", "Homme", "26/02/2015", "26/06/2026"],
+    ["27", "img/27.png", "Gonzalez", "RST", "Femme", "27/03/2016", "27/07/2026"],
+    ["28", "img/28.png", "Torres", "UVW", "Homme", "28/04/2017", "28/08/2026"],
+    ["29", "img/29.png", "Rivera", "XYZ", "Femme", "29/05/2018", "29/09/2026"],
+    ["30", "img/30.png", "Rodriguez", "ABC", "Homme", "30/06/2019", "30/10/2026"],
+    ["31", "img/31.png", "Martinez", "DEF", "Femme", "01/07/2020", "01/11/2026"],
+    ["32", "img/32.png", "Hernandez", "GHI", "Homme", "02/08/2021", "02/12/2026"],
+    ["33", "img/33.png", "Garcia", "JKL", "Femme", "03/09/2022", "03/01/2027"],
+    ["34", "img/34.png", "Lopez", "MNO", "Homme", "04/10/2023", "04/02/2027"],
+    ["35", "img/35.png", "Perez", "PQR", "Femme", "05/11/2024", "05/03/2027"],
+    ["36", "img/36.png", "Sanchez", "STU", "Homme", "06/12/2025", "06/04/2027"],
+    ["37", "img/37.png", "Ramirez", "VWX", "Femme", "07/01/2026", "07/05/2027"],
+    ["38", "img/38.png", "Gonzalez", "YZA", "Homme", "08/02/2027", "08/06/2027"],
+    ["39", "img/39.png", "Torres", "BCD", "Femme", "09/03/2028", "09/07/2027"],
+    ["40", "img/40.png", "Rivera", "EFG", "Homme", "10/04/2029", "10/05/2027"],
+    ["41", "img/41.png", "Rodriguez", "HIJ", "Femme", "11/05/2030", "11/06/2027"],
+    ["42", "img/42.png", "Martinez", "KLM", "Homme", "12/06/2031", "12/07/2027"],
+    ["43", "img/43.png", "Hernandez", "NOP", "Femme", "13/07/2032", "13/08/2027"],
+    ["44", "img/44.png", "Garcia", "QRS", "Homme", "14/08/2033", "14/09/2027"],
+    ["45", "img/45.png", "Lopez", "TUV", "Femme", "15/09/2034", "15/10/2027"],
+    ["46", "img/46.png", "Perez", "WXY", "Homme", "16/10/2035", "16/11/2027"],
+    ["47", "img/47.png", "Sanchez", "ZAB", "Femme", "17/11/2036", "17/12/2027"],
+    ["48", "img/48.png", "Ramirez", "CDE", "Homme", "18/12/2037", "18/01/2028"],
+    ["49", "img/49.png", "Gonzalez", "FGH", "Femme", "19/01/2038", "19/02/2028"],
+    ["50", "img/50.png", "Torres", "IJK", "Homme", "20/02/2039", "20/03/2028"],
+    ["51", "img/51.png", "Rivera", "LMN", "Femme", "21/03/2040", "21/04/2028"],
+    // Ajoutez d'autres entrées ici si nécessaire
+];
+
+
+        // Nombre de lignes à afficher par page
+        var perPage = 5;
+
+        // Récupérer la référence du corps du tableau
+        var tbody = document.querySelector('#tableau tbody');
+        var paginationUl = document.querySelector('#pagination ul');
+
+        // Fonction pour afficher les données avec pagination
+        function displayData(page) {
+            tbody.innerHTML = '';
+            var startIndex = (page - 1) * perPage;
+            var endIndex = Math.min(startIndex + perPage, personnes.length);
+            for (var i = startIndex; i < endIndex; i++) {
+                var tr = document.createElement('tr');
+                personnes[i].forEach(function (info) {
+                    var td = document.createElement('td');
+                    // Si l'info est une URL, créer une balise img
+                    if (info.startsWith('img/')) {
+                        var img = document.createElement('img');
+                        img.src = info;
+                        img.alt = "Photo de profil";
+                        td.appendChild(img);
+                    } else {
+                        td.textContent = info;
+                    }
+                    tr.appendChild(td);
+                });
+                // Ajouter une action (par exemple, un bouton pour supprimer) à chaque ligne si nécessaire
+                var actionTd = document.createElement('td');
+                var deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Supprimer';
+                deleteBtn.addEventListener('click', function () {
+                    tr.remove();
+                });
+                actionTd.appendChild(deleteBtn);
+                tr.appendChild(actionTd);
+                tbody.appendChild(tr);
+            }
+        }
+
+        // Fonction pour afficher la pagination
+        function displayPagination() {
+            paginationUl.innerHTML = '';
+            var numPages = Math.ceil(personnes.length / perPage);
+            for (var i = 1; i <= numPages; i++) {
+                var li = document.createElement('li');
+                li.className = 'page-item';
+                var a = document.createElement('a');
+                a.className = 'page-link';
+                a.href = '#';
+                a.textContent = i;
+                a.addEventListener('click', function () {
+                    displayData(parseInt(this.textContent));
+                });
+                li.appendChild(a);
+                paginationUl.appendChild(li);
+            }
+        }
+
+        // Initial display
+        displayData(1);
+        displayPagination();
+
+        // Event listener for search button
+        document.getElementById('searchButton').addEventListener('click', function () {
+            // Code for search functionality here
+        });
+
+        // Event listener for perPage select
+        document.getElementById('perPageSelect').addEventListener('change', function () {
+            perPage = parseInt(this.value);
+            displayData(1);
+            displayPagination();
+        });
+
+    </script>
+</body>
+</html>

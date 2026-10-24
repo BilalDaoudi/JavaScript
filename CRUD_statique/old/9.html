@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Personnes</title>
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+        .sort-icon {
+            font-size: 0.8em;
+            vertical-align: middle;
+        }
+        
+    </style>
+    </head>
+    <body>
+        <div class="container mt-4">
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <select id="searchType" class="form-control">
+                        <option value="choisir">Choisir Type</option>
+                        <option value="name">Nom</option>
+                        <option value="matricule">Matricule</option>
+                        <option value="gender">Genre</option>
+                        <option value="dob">Date de naissance</option>
+                        <option value="creationDate">Date de création</option>
+                    </select>
+                </div>
+                <div class="col-md-6" id="searchInputContainer">
+                    <div id="normale">
+                        <input type="text" class="form-control" id="searchInput"
+                            placeholder="Recherche...">
+                    </div>
+                    <div id="date" style="display: none;">
+                        <input type="date" class="form-control" id="date1">
+                        <input type="date" class="form-control" id="date2">
+                    </div>
+
+                    <div id="genre" style="display: none;">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input"
+                                    name="genre" id="homme" value="homme">
+                                Homme
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input"
+                                    name="genre" id="femme" value="femme">
+                                femme
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" data-toggle="modal"
+                        data-target="#addModal">Ajouter</button>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <select id="perPageSelect" class="form-control">
+                        <option value="5">5 lignes</option>
+                        <option value="10">10 lignes</option>
+                        <option value="25">25 lignes</option>
+                        <option value="50">50 lignes</option>
+                        <option value="100">100 lignes</option>
+                    </select>
+                </div>
+            </div>
+            <div id="trierpar" class="mb-3">
+                Trié par : <span id="triInfo"></span>
+            </div>
+        </div>
+
+        <div class="container">
+            <table class="table table-striped table-bordered" id="tableau">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" class="sortable" data-column="0">ID
+                            <span class="sort-icon"></span></th>
+                        <th scope="col" class="sortable" data-column="1">Photo
+                            <span class="sort-icon"></span></th>
+                        <th scope="col" class="sortable" data-column="2">Nom
+                            <span class="sort-icon"></span></th>
+                        <th scope="col" class="sortable"
+                            data-column="3">Matricule <span
+                                class="sort-icon"></span></th>
+                        <th scope="col" class="sortable" data-column="4">Genre
+                            <span class="sort-icon"></span></th>
+                        <th scope="col" class="sortable" data-column="5">Date de
+                            naissance <span class="sort-icon"></span></th>
+                        <th scope="col" class="sortable" data-column="6">Date de
+                            création <span class="sort-icon"></span></th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les lignes de données iront ici -->
+                </tbody>
+            </table>
+
+            <div id="pagination" class="container">
+                <ul class="pagination justify-content-center">
+                    <!-- Les liens de pagination iront ici -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Add Modal -->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+            aria-labelledby="addModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">Ajouter
+                            Personne</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form for adding a person -->
+                        <form id="addForm">
+                            <div class="form-group">
+                                <label for="photo">Photo:</label>
+
+                                <input type="file" class="form-control-file"
+                                    id="photo" accept="image/*"
+                                    onchange="previewImage(this,'img_add')">
+                                <img src width="100px" id="img_add" />
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Nom:</label>
+                                <input type="text" class="form-control"
+                                    id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="matricule">Matricule:</label>
+                                <input type="text" class="form-control"
+                                    id="matricule" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="genre">Genre:</label>
+                                <select class="form-control" id="genre"
+                                    required>
+                                    <option value="homme">Homme</option>
+                                    <option value="femme">Femme</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date de naissance:</label>
+                                <input type="date" class="form-control" id="dob"
+                                    required>
+                            </div>
+                            <button type="submit"
+                                class="btn btn-primary">Ajouter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+            aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Modifier
+                            Personne</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form for editing a person -->
+                        <form id="editForm">
+                            <div class="form-group">
+                                <label for="editPhoto">Photo:</label>
+                                <input type="file" class="form-control-file"
+                                    id="editPhoto" accept="image/*"
+                                    onchange="previewImage(this,'img_edit')">
+                                <img src width="100px" id="img_edit" />
+                                <div id="imagePreview"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="editName">Nom:</label>
+                                <input type="text" class="form-control"
+                                    id="editName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editMatricule">Matricule:</label>
+                                <input type="text" class="form-control"
+                                    id="editMatricule" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Genre:</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio"
+                                        name="editGenre" id="editHomme"
+                                        value="homme">
+                                    <label class="form-check-label"
+                                        for="editHomme">Homme</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio"
+                                        name="editGenre" id="editFemme"
+                                        value="femme">
+                                    <label class="form-check-label"
+                                        for="editFemme">Femme</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDob">Date de naissance:</label>
+                                <input type="date" class="form-control"
+                                    id="editDob" required>
+                            </div>
+                            <button type="submit"
+                                class="btn btn-primary">Enregistrer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+            aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Supprimer
+                            Personne</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <input type="text" class="form-control" id="deleteId"
+                            required>
+                        <p>Êtes-vous sûr de vouloir supprimer cette
+                            personne?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Annuler</button>
+                        <button id="deleteBtnConfirm" type="button"
+                            class="btn btn-danger"
+                            onclick="removePersonById('8')">Supprimer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+    // JavaScript for handling CRUD operations
+  
+    // Function to load data into the edit modal
+    function loadEditModal(personne) {
+      document.getElementById('editName').value = personne.nom; // Assuming 'nom' is the property containing the name
+      // You can load other data fields similarly
+    }
+  </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script>
+    var personnes = [    ["1", "1.jpg", "Daoudi", "XXX", "Homme", "1990-01-01", "2024-05-01"],
+    ["2", "1.jpg", "Smith", "YYY", "Homme", "1991-02-02", "2024-06-02"],
+    ["3", "1.jpg", "Johnson", "ZZZ", "Femme", "1992-03-03", "2024-07-03"],
+    ["4", "1.jpg", "Brown", "ABC", "Homme", "1993-04-04", "2024-08-04"],
+    ["5", "1.jpg", "Wilson", "DEF", "Femme", "1994-05-05", "2024-09-05"],
+    ["6", "1.jpg", "Martinez", "GHI", "Homme", "1995-06-06", "2024-10-06"],
+    ["7", "1.jpg", "Anderson", "JKL", "Femme", "1996-07-07", "2024-11-07"],
+    ["8", "1.jpg", "Taylor", "MNO", "Homme", "1997-08-08", "2024-12-08"],
+    ["9", "1.jpg", "Thomas", "PQR", "Femme", "1998-09-09", "2025-01-09"],
+    ["10", "1.jpg", "Hernandez", "STU", "Homme", "1999-10-10", "2025-02-10"],
+    ["11", "1.jpg", "Garcia", "VWX", "Femme", "2000-11-11", "2025-03-11"],
+    // ["12", "1.jpg", "Lopez", "YZA", "Homme", "2001-12-12", "2025-04-12"]
+];
+
+    var perPage = 5;
+    var tbody = document.querySelector('#tableau tbody');
+    var paginationUl = document.querySelector('#pagination ul');
+
+    function displaySearchInput() {
+        var searchType = document.getElementById('searchType').value;
+    var normaleInput = document.getElementById('normale');
+    var dateInput = document.getElementById('date');
+    var genreInput = document.getElementById('genre');
+
+    // Réinitialiser tous les champs de recherche à l'état initial
+    normaleInput.style.display = 'block';
+    dateInput.style.display = 'none';
+    genreInput.style.display = 'none';
+
+    // Activer ou désactiver les champs de recherche en fonction du type sélectionné
+    switch (searchType) {
+        case 'choisir':
+            // Désactiver tous les champs de recherche
+            document.getElementById('searchInput').value = ''; // Videz le champ de texte
+            document.getElementById('searchInput').disabled = true; // Désactiver le champ de texte
+            document.getElementById('date1').value = ''; // Réinitialisez les champs de date
+            document.getElementById('date2').value = ''; // Réinitialisez les champs de date
+            document.getElementById('homme').checked = false; // Désélectionnez les boutons radio
+            document.getElementById('femme').checked = false; // Désélectionnez les boutons radio
+            break;
+        case 'name':
+        case 'matricule':
+            // Afficher le champ de texte normal
+            normaleInput.style.display = 'block';
+            document.getElementById('searchInput').disabled = false; // Activer le champ de texte
+            break;
+        case 'dob':
+        case 'creationDate':
+            // Afficher les champs de date
+            dateInput.style.display = 'block';
+            break;
+        case 'gender':
+            // Afficher le champ de genre
+            genreInput.style.display = 'block';
+            break;
+        default:
+            break;
+    }
+}
+
+    // Event listener for search type change
+    document.getElementById('searchType').addEventListener('change', function () {
+        displaySearchInput();
+    });
+
+    // Initial display of search input
+    displaySearchInput();
+
+    function customIdSort(a, b) {
+        return parseInt(a[0]) - parseInt(b[0]);
+    }
+
+    // Fonction pour trier les données en fonction de la colonne et de l'ordre spécifiés
+    function sortData(column, order) {
+        if (column === 0) { // Si la colonne est l'ID
+            personnes.sort(customIdSort); // Utiliser la fonction de tri personnalisée pour trier par ID
+            if (order === 'desc') personnes.reverse(); // Inverser si l'ordre est descendant
+        } else {
+            personnes.sort((a, b) => {
+                if (order === 'asc') {
+                    return a[column] > b[column] ? 1 : -1;
+                } else {
+                    return a[column] < b[column] ? 1 : -1;
+                }
+            });
+        }
+    }
+
+    // Fonction pour réinitialiser l'état de tri des en-têtes de colonne
+    function resetSortState() {
+        var sortableHeaders = document.querySelectorAll('.sortable');
+        sortableHeaders.forEach(header => {
+            header.dataset.order = '';
+            toggleSortIcon(header, '');
+        });
+    }
+
+    // Fonction pour afficher l'icône de tri dans l'en-tête de colonne
+    function toggleSortIcon(element, order) {
+        var sortIcons = document.querySelectorAll('.sort-icon');
+        sortIcons.forEach(icon => {
+            icon.textContent = '';
+        });
+        element.querySelector('.sort-icon').textContent = order === 'asc' ? '↑' : '↓';
+    }
+
+    // Fonction pour gérer le clic sur les en-têtes de colonne pour trier les données
+    function handleColumnHeaderClick(event) {
+        const column = parseInt(event.target.dataset.column);
+        const order = event.target.dataset.order === 'asc' ? 'desc' : 'asc';
+
+        resetSortState();
+        event.target.dataset.order = order;
+        toggleSortIcon(event.target, order);
+
+        sortData(column, order);
+        displayData(1); // Afficher les données triées
+        displayPagination(1); // Mettre à jour la pagination
+        updateSortInfo(column, order); // Mettre à jour les informations de tri
+    }
+
+    // Ajouter un écouteur d'événements à chaque en-tête de colonne
+   
+    const sortableHeaders = document.querySelectorAll('.sortable');
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', handleColumnHeaderClick);
+    });
+
+    // Fonction pour afficher les données avec pagination
+    function displayData(page) {
+    tbody.innerHTML = '';
+    var startIndex = (page - 1) * perPage;
+    var endIndex = Math.min(startIndex + perPage, personnes.length);
+    for (var i = startIndex; i < endIndex; i++) {
+        var tr = document.createElement('tr');
+        let per = personnes[i];
+        personnes[i].forEach(function (info) {
+            var td = document.createElement('td');
+            // Si l'info est une URL, créer une balise img
+            if (info.endsWith(".jpg")) {
+                var img = document.createElement('img');
+                img.setAttribute("width", "50px")
+                img.src = info;
+                img.alt = "Photo de profil";
+                td.appendChild(img);
+            } else {
+                td.textContent = info;
+            }
+            tr.appendChild(td);
+        });
+        // Ajouter une action (par exemple, des boutons pour modifier et supprimer) à chaque ligne
+        var actionTd = document.createElement('td');
+        
+        var editBtn = document.createElement('button');
+        editBtn.textContent = 'Modifier';
+        editBtn.addEventListener('click', function () {
+            loadEditModal(per);
+    $('#editModal').modal('show');
+        });
+        actionTd.appendChild(editBtn);
+        
+        var deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Supprimer';
+        deleteBtn.addEventListener('click', function () {
+            loadDeleteModal(per[0]);
+            $('#deleteModal').modal('show');
+        });
+        actionTd.appendChild(deleteBtn);
+        
+        tr.appendChild(actionTd);
+        tbody.appendChild(tr);
+    }
+}
+
+
+    function displayPrevNextButtons(currentPage, numPages) {
+        var prevLi = document.createElement('li');
+        prevLi.className = 'page-item';
+        var prevLink = document.createElement('a');
+        prevLink.className = 'page-link';
+        prevLink.href = '#';
+        prevLink.textContent = 'Précédent';
+        prevLink.addEventListener('click', function () {
+            if (currentPage > 1) {
+                displayData(currentPage - 1);
+                displayPagination(currentPage - 1);
+            }
+        });
+        prevLi.appendChild(prevLink);
+        var firstChild = paginationUl.firstChild;
+
+        paginationUl.insertBefore(prevLi, firstChild);
+
+        var nextLi = document.createElement('li');
+        nextLi.className = 'page-item';
+        var nextLink = document.createElement('a');
+        nextLink.className = 'page-link';
+        nextLink.href = '#';
+        nextLink.textContent = 'Suivant';
+        nextLink.addEventListener('click', function () {
+            if (currentPage < numPages) {
+                displayData(currentPage + 1);
+                displayPagination(currentPage + 1);
+            }
+        });
+        nextLi.appendChild(nextLink);
+        paginationUl.appendChild(nextLi);
+    }
+
+    function displayPagination(currentPage) {
+        paginationUl.innerHTML = '';
+        var numPages = Math.ceil(personnes.length / perPage);
+        var totalPagesToShow = 3; // Nombre total de pages à afficher
+        var startPage = Math.max(1, currentPage - Math.floor(totalPagesToShow / 2)); // Page de début
+        var endPage = Math.min(startPage + totalPagesToShow - 1, numPages); // Page de fin
+
+        // Assurer que le nombre total de pages affichées est égal à totalPagesToShow
+        startPage = Math.max(1, endPage - totalPagesToShow + 1);
+
+        // Afficher les numéros de page
+        for (var i = startPage; i <= endPage; i++) {
+            var li = document.createElement('li');
+            li.className = 'page-item';
+            var a = document.createElement('a');
+            a.className = 'page-link';
+            a.href = '#';
+            a.textContent = i;
+            if (i === currentPage) {
+                li.classList.add('active'); // Ajouter une classe pour indiquer la page actuelle
+            }
+            a.addEventListener('click', function () {
+                displayData(parseInt(this.textContent));
+                displayPagination(parseInt(this.textContent));
+            });
+            li.appendChild(a);
+            paginationUl.appendChild(li);
+        }
+
+        displayPrevNextButtons(currentPage, numPages);
+    }
+
+    displayData(1);
+    displayPagination(1);
+
+    document.getElementById('perPageSelect').addEventListener('change', function () {
+        perPage = parseInt(this.value);
+        displayData(1);
+        displayPagination(1);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtenez l'en-tête de colonne pour le nom
+        var nomHeader = document.querySelector('.sortable[data-column="0"]');
+        // Déclenchez un clic sur cet en-tête pour effectuer le tri initial
+        nomHeader.click();
+    });
+
+    // Fonction pour mettre à jour l'élément trierpar avec les informations de tri actuelles
+    function updateSortInfo(column, order) {
+        var columnName;
+        switch (column) {
+            case 0:
+                columnName = "ID";
+                break;
+            case 1:
+                columnName = "Photo";
+                break;
+            case 2:
+                columnName = "Nom";
+                break;
+            case 3:
+                columnName = "Matricule";
+                break;
+            case 4:
+                columnName = "Genre";
+                break;
+            case 5:
+                columnName = "Date de naissance";
+                break;
+            case 6:
+                columnName = "Date de création";
+                break;
+            default:
+                columnName = "";
+        }
+        var sortOrder = order === "asc" ? "croissant" : "décroissant";
+        document.getElementById("triInfo").textContent = columnName + " (" + sortOrder + ")";
+    }
+
+    function loadEditModal(personne) {
+  document.getElementById('editName').value = personne[2];
+  document.getElementById('editMatricule').value = personne[3];
+  document.getElementById('editDob').value = personne[5];
+  document.getElementById('img_edit').src =  personne[1];
+
+  var hommeRadio = document.getElementById('editHomme');
+  var femmeRadio = document.getElementById('editFemme');
+  
+  if (personne[4] === 'Homme') {
+    hommeRadio.checked = true;
+  } else if (personne[4] === 'Femme') {
+    femmeRadio.checked = true;
+  }
+
+  }
+  function loadDeleteModal(id) {
+    // alert(id)
+    document.getElementById('deleteId').value = id;
+  }
+
+  function previewImage(inp,id) {
+        var preview = document.getElementById(id);
+        var file = inp.files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+
+    function removePersonById(id) {
+    personnes = personnes.filter(function(person) {
+        return person[0] !== id;
+    });
+    $('#deleteModal').modal('hide');
+}
+
+</script>
+    </body>
+</html>

@@ -1,0 +1,4 @@
+je veux faire une site web avec html , css, js
+pour afficher les personnes (id,photo,nom,matricule,genre(homme-femme),date de naissance)
+dans html :
+section 1 : contient une select de type de recherche et input de recherche et select de type de trier 
