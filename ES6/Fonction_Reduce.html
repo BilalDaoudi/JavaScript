@@ -1,0 +1,16 @@
+<script>
+    const personnes = [
+        { nom: "Rami", age: 33, estMember: true },
+        { nom: "Fatihi", age: 24, estMember: false },
+        { nom: "Chakib", age: 45, estMember: true },
+        { nom: "Mounir", age: 37, estMember: false },
+    ];
+
+
+    const MoyAge = personnes.reduce(function (total, per) {
+        return total += per.age
+    }, 0);
+    console.log(MoyAge / personnes.length);
+
+
+</script>

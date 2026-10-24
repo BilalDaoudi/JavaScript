@@ -1,0 +1,31 @@
+<script>
+
+    export class Personne {
+        constructor(nom, prenom, age) {
+            this.Nom = nom;
+            this.Prenom = prenom;
+            this.Age = age
+        }
+        Affiche() {
+            console.log("Nom : ", this.Nom);
+            console.log("Prénom : ", this.Prenom);
+            console.log("Age : ", this.Age);
+        }
+    }
+
+
+    export default class Stagiaire extends Personne {
+        constructor(NumInscription, nom, prenom, age) {
+            super(nom, prenom, age)
+            this.NumeroInscription = NumInscription;
+        }
+
+        Affiche() {
+            console.log("Numéro Inscription : ", this.NumeroInscription, super.Affiche());
+        }
+    }
+
+
+    var Stg1 = new Stagiaire(123, "Daoudi", "Bilal", 20);
+    Stg1.Affiche() 
+</script>

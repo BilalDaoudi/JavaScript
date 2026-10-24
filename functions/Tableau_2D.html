@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        var g = [["1", "2", "3", "4", "5"], ["one", "two", "three", "four", "five"], ["un", "deux", "trois", "quatre", "cinq"], ["uno", "dos", "tres", "quatro", "sinco"]]
+
+
+        var tabl = document.createElement("table")
+
+
+        for (var i = 0; i < g.length; i++) {
+            var tr = document.createElement("tr")
+            for (var j = 0; j < 5; j++) {
+                td = document.createElement("td");
+                tex = document.createTextNode(g[i][j]);
+                td.appendChild(tex);
+                tr.appendChild(td);
+            }
+            tabl.appendChild(tr);
+        }
+        document.body.appendChild(tabl)
+
+
+    </script>
+</body>
+
+</html>

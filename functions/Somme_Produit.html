@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP1</title>
+    <script>
+        function Remplir_tableau() {
+            
+            var n=parseFloat(prompt("donner le nombre"));
+            return n
+            
+        }
+
+        function somme() {
+            var som =0
+            for(i=0;i<table_1.length;i++){
+                  som+=table_1[i]
+    }
+          return som
+        }
+        function afficher_somme(s) {
+            document.write("la somme est :" +s)
+            
+        }
+        function produit() {
+            var prod =1
+            for(i=0;i<table_1.length;i++){
+                  prod*=table_1[i]
+    }
+            return prod
+        }
+        function afficher_produit(p) {
+            document.write("le produit est :" +p)
+        }
+    </script>
+</head>
+<body>
+<script>
+    var n=parseInt(prompt("combien de nombre"));
+    var table_1 = new Array(n);
+    
+    for(i=0;i<n;i++){
+        table_1[i]=Remplir_tableau()
+    }
+    som=somme()
+    prod=produit()
+</script>
+<input type="button" value="Somme" onclick="afficher_somme(som)">
+<input type="button" value="produit" onclick="afficher_produit(prod)">
+
+
+
+    
+</body>
+</html>

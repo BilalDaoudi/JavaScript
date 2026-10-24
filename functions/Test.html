@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP1</title>
+    <script>
+        function Nom(){
+            let v = document.getElementsByClassName("bb")
+            let i = v[0].textContent;
+            alert(i)
+        }
+        
+    </script>
+</head>
+<body> 
+  
+    <form>
+        <select name="" id="" onchange="document.forms[0].submit();">
+            <option value="a">z</option>
+            <option value="t">t</option>
+            <option value="e">a</option>
+        </select>
+    <p id="p1">Votre nom est :</p>
+    <input type="button" value="Envoyer" onclick="Nom()">
+
+    <p class="bb">bilal</p>
+    <input type="text" class="bb">
+    <p class="bb">19</p>
+    <p class="bb">dev102</p>
+    <p class="bb">ofppt</p>
+ </form>
+  
+    
+</body>
+</html>

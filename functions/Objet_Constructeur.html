@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>obejct</title>
+    <script>
+        function Voiture(fabricant, modele, anne, proprietaire) {
+            this.fabricant = fabricant;
+            this.modele = modele;
+            this.anne = anne;
+            this.proprietaire = proprietaire;
+        }
+        function Personne(nom, age, sexe) {
+            this.nom = nom;
+            this.age = age;
+            this.sexe = sexe;
+        }
+    
+
+    </script>
+</head>
+
+<body>
+    <script>
+        var max = new Personne("Bilal Daoudi<br>", 19, "<br>M");
+        var morgan = new Personne("Banaissa Nador<br>", 39, "<br>M");
+        var voitureMargon = new Voiture("Eagle", "talos TS", 1993, max);
+        var mavoiture = new Voiture("Audi", "A3", 2005, morgan);
+
+
+    </script>
+    <table border="1" width=100%>
+        <tr>
+            <th>fabricant</th>
+            <th>modele</th>
+            <th>année</th>
+            <th>proprietaire</th>
+
+        </tr>
+
+        <tr>
+            <td>
+                <script>document.write(voitureMargon.fabricant)</script>
+            </td>
+
+
+            <td>
+                <script>document.write(voitureMargon.modele)</script>
+            </td>
+
+            <td>
+                <script>document.write(voitureMargon.anne)</script>
+            </td>
+
+            <td>
+                <script>
+                    document.write(voitureMargon.proprietaire.nom)
+                    document.write(voitureMargon.proprietaire.age)
+                    document.write(voitureMargon.proprietaire.sexe)
+                </script>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <script>document.write(mavoiture.fabricant)</script>
+            </td>
+
+
+            <td>
+                <script>document.write(mavoiture.modele)</script>
+            </td>
+
+            <td>
+                <script>document.write(mavoiture.anne)</script>
+            </td>
+            <td>
+                <script>
+                    document.write(mavoiture.proprietaire.nom)
+                    document.write(mavoiture.proprietaire.age)
+                    document.write(mavoiture.proprietaire.sexe)
+
+                </script>
+            </td>
+
+        </tr>
+
+    </table>
+</body>
+
+</html>

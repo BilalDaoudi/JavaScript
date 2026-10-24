@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        setTimeout(function () {
+            console.log("bilal")
+        }, 2000);
+        function fetchDataFromServer(callback) {
+            setTimeout(function () {
+                var data = { message: 'Données récupérées depuis le serveur' };
+                callback(null, data); // Appel du callback avec les données
+            }, 100);
+        }
+
+        function processData(data, callback) {
+            setTimeout(function () {
+                var processedData = data.message.toUpperCase();
+                callback(null, processedData); // Appel du callback avec les données traitées
+            }, 2000);
+        }
+
+        // Utilisation de callbacks pour effectuer des appels asynchrones
+        fetchDataFromServer(function (error, data) {
+            if (error) {
+                console.error(error);
+            } else {
+                processData(data, function (error, processedData) {
+                    if (error) {
+                        console.error(error);
+                    } else {
+                        console.log(processedData); // Affichage des données traitées
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="remove item" onclick="removeitem()">
+    <input type="button" value="add item" onclick="additem()">
+    <input type="button" value="add item at" onclick="additemat()">
+    <script>
+        function additem(){
+            let item=prompt("donner item :");
+            let lis=document.createElement("li");
+            let text = document.createTextNode(item)
+            lis.appendChild(text);
+            
+            document.getElementById("bilal").appendChild(lis);
+        };
+
+        function removeitem(){
+            var t=parseInt(prompt("donner le nombre a supprimer"));
+            document.getElementById("bilal").removeChild(document.getElementById("bilal").childNodes[t-1])
+        };
+        function additemat(){
+            var at=prompt("donner new item :");
+            var a=parseInt(prompt("donner before item :"));
+            let lis=document.createElement("li");
+            let text = document.createTextNode(at)
+            lis.appendChild(text);
+            document.getElementById("bilal").insertBefore(lis,document.getElementById("bilal").childNodes[a-1])
+
+        };
+
+    </script>
+    <ol id="bilal"></ol>
+</body>
+</html>

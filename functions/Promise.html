@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        setTimeout(function () {
+            console.log("bilal")
+        }, 2000);
+        function fetchDataFromServer() {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    var data = { message: 'Données récupérées depuis le serveur' };
+                    resolve(data); // Résolution de la Promise avec les données
+                }, 2000);
+            });
+        }
+
+        function processData(data) {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    var processedData = data.message.toUpperCase();
+                    resolve(processedData); // Résolution de la Promise avec les données traitées
+                }, 2000);
+            });
+        }
+
+        // Utilisation de Promises pour effectuer des appels asynchrones
+        fetchDataFromServer()
+            .then(processData)
+            .then(function (processedData) {
+                console.log(processedData); // Affichage des données traitées
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    </script>
+</body>
+
+</html>

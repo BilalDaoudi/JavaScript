@@ -1,0 +1,10 @@
+<input type="text" id="message">
+<script>
+let zone = document.getElementById('message');
+document.body.addEventListener('keydown', (event) => {
+console.log(`key=${event.key},code=${event.code}`);
+if(event.key =="Escape"){
+    alert("bravo")
+}
+});
+</script>

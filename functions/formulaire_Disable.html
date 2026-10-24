@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Titre du document</title>
+    <style>
+        .form-popup {
+            display: none;
+            /* position: fixed; */
+            position: absolute;
+            background-color: white;
+            left: 45%;
+            top: 5%;
+            width: 400px;
+            height: 400px;
+            border: 2px solid #666;
+            z-index: 1;
+        }
+
+        label {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-style: oblique;
+        }
+
+        input[type="text"] {
+            width: 170px;
+            height: 20px;
+        }
+
+        select {
+            width: 175px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="open-btn">
+        <button class="open-button" onclick="openForm()"><strong>Formulaire</strong></button>
+    </div>
+
+    <div class="form-popup" id="popupForm">
+        <form action="/action_page.php" class="form-container">
+            <center>
+                <div id="input">
+                    <h2>Nom et Prénom (Formateur)</h2>
+                    <label for="">
+                        <strong>Code Module :</strong>
+                    </label><br>
+                    <select name="cdmd" onchange="Disabled()" id="codemd">
+                        <option value="">CHoisir Code Module</option>
+                        <option value="M105">M105</option>
+                        <option value="M106">M106</option>
+                    </select>
+                    <br>
+                    <label for="typeSc">
+                        <strong>Type Science :</strong>
+                    </label><br>
+                    <select name="typesc" disabled id="typeSc">
+                        <option value="">Choisir Type Science</option>
+                        <option value="P">Présentiel</option>
+                        <option value="V">Distance</option>
+                    </select><br><br>
+                </div>
+                <button type="submit" class="btn">Ajouter</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
+            </center>
+        </form>
+    </div>
+    <script>
+        function openForm() {
+            document.getElementById("popupForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("popupForm").style.display = "none";
+        }
+        function Disabled() {
+            if (document.getElementById("codemd").value != '')
+                document.getElementById("typeSc").disabled = false
+            else
+                document.getElementById("typeSc").disabled = true
+
+            if (document.getElementById("typeSc").value != '')
+                var select=document.createElement('selcet')
+                select.name='salles'
+                select.id='sal'
+        }
+    </script>
+</body>
+
+</html>

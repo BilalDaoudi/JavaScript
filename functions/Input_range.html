@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <center>
+        <label for="r1">Opacity Image : </label>
+        <input type="range" name="r1" id="r1" onchange="range(this)" value="30"><br><br>
+        <img src="../Exemples_Corrections/EFM_1/Foto/ps4.jpg" alt="" id="img" width="550px">
+    </center>
+
+
+
+    <script>
+        document.getElementById("img").style.opacity = 0.3;
+        function range(R) {
+            document.getElementById("img").style.opacity = R.value / 100 ;
+        }
+    </script>
+</body>
+
+</html>

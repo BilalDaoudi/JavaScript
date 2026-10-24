@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Les événements de la souris</title>
+<style>
+#pos { background-color: goldenrod; height: 200px; width: 400px; }
+</style>
+</head>
+<body>
+<p>Faire bouger la souris pour voir sa position.</p>
+<div id="pos"></div>
+<p id="affichage">hgjyh</p>
+<script>
+let pos = document.querySelector('#pos');
+pos.addEventListener('mousemove', (e) => {
+let affichage = document.querySelector('#affichage');
+affichage.innerText = `Screen X/Y: (${e.screenX}, ${e.screenY}) Client X/Y: (${e.clientX}, ${e.clientY})`
+});
+</script>
+</body>
+</html>

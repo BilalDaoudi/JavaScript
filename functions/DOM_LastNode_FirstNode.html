@@ -1,0 +1,11 @@
+<div>
+    <p id="myP">Un peu de texte, <a>un lien</a> et <strong>une portion en
+            emphase</strong></p>
+</div>
+<script>
+    var paragraph = document.getElementById('myP');
+    var first = paragraph.firstChild;
+    var last = paragraph.lastChild;
+    alert(first.nodeName.toLowerCase());
+    alert(last.nodeName.toLowerCase());
+</script>

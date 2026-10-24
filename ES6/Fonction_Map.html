@@ -1,0 +1,32 @@
+<script>
+    const personnes = [
+        { nom: "Rami", age: 33, estMember: true },
+        { nom: "Fatihi", age: 24, estMember: false },
+        { nom: "Chakib", age: 45, estMember: true },
+        { nom: "Mounir", age: 37, estMember: false },
+    ];
+
+    var T_Nom_Age = personnes.map(
+        function (per) {
+            return per.nom + " " + per.age;
+        }
+    )
+
+    T_Nom_Age.forEach(element => {
+        console.log(element)
+    });
+
+
+
+
+
+    const nums = [2, 5, 8, 7, 3];
+
+    const nouvNums = nums.map(n => n * 3);
+
+    console.log(nouvNums);
+
+    nouvNums.forEach(element => {
+        console.log(element)
+    });
+</script>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const personnes =[
+            {nom : "daoudi" , prenom : "bilal" , age : 19},
+            {nom : "daoudi" , prenom : "hamza" , age : 22},
+            {nom : "daoudi" , prenom : "moustapha" , age : 25}
+        ]
+
+        // Affiche les personnes qui supperieure ou égale de 20 ans
+        const UpperNom = personnes.filter(personne => personne.age >= 20)
+        console.table(UpperNom);
+    </script>
+</body>
+</html>

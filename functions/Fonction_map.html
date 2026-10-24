@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const stagiaires = [
+            {nom : "daoudi" , prenom : "Bilal" , age:19},
+            {nom : "bouabid" , prenom : "Nouzha" , age:18},
+            {nom : "amghar" , prenom : "mohamed" , age:20},
+            {nom : "aaboub" , prenom : "mohamed" , age:19}
+        ]
+        
+        const T_texts = stagiaires.map(stg => stg.prenom + " " + stg.nom + " à " + stg.age + "ans");
+        // const T_texts = stagiaires.map(stg => stg.age);
+
+        for(txt of T_texts){
+            console.log(txt);
+        }
+    </script>
+</body>
+</html>

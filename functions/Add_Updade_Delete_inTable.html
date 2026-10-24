@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>   
+        function Ajouter(){
+            let table = document.getElementById("tbl");
+            let tr = document.createElement("tr");
+            let td1 = document.createElement("td");
+            td1.textContent = document.getElementById("code").value;
+            let td2 = document.createElement("td");
+            td2.textContent = document.getElementById("nom").value;
+            let td3 = document.createElement("td");
+            let btndelete = document.createElement("button");
+            
+            btndelete.textContent = "Delete";
+            btndelete.addEventListener("click",function (){
+                tr.remove();
+            });
+            td3.appendChild(btndelete);
+
+            let td4 = document.createElement("td");
+            let btnupdate = document.createElement("button");
+            btnupdate.textContent = "Update";
+            btnupdate.addEventListener("click",function (){
+                td1.textContent = document.getElementById("code").value;
+                td2.textContent = document.getElementById("nom").value;
+            });
+            td4.appendChild(btnupdate);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            table.appendChild(tr);
+        }
+    </script>
+    <h1>Données étudiant</h1>
+    Code Etudiant : <input type="text" id="code"> Nom : <input type="text" id="nom">
+    <br><br>
+    <input type="button" value="Ajouter" onclick="Ajouter()">
+    <hr>
+    <table border="1" id="tbl">
+        <tr>
+            <th>Code</th>
+            <th>Nom</th>
+            <th>Delete</th>
+            <th>Updade</th>
+        </tr>
+    </table>
+</body>
+</html>

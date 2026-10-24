@@ -1,0 +1,23 @@
+<script>
+
+    class Stagiaire {
+        constructor(NumInscription, nom, prenom, age) {
+            this.Nom = nom;
+            this.Prenom = prenom;
+            this.NumeroInscription = NumInscription;
+            this.Age = age
+        }
+
+        Affiche() {
+            console.log("Numéro Inscription : ", this.NumeroInscription);
+            console.log("Nom : ", this.Nom);
+            console.log("Prénom : ", this.Prenom);
+            console.log("Age : ", this.Age);
+        }
+    }
+
+
+    var Stg1 = new Stagiaire(123, "Daoudi", "Bilal", 20);
+    Stg1.Affiche()
+
+</script>

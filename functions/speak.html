@@ -1,0 +1,16 @@
+<script>
+    var text = "Hamza imar";
+    var speech = new SpeechSynthesisUtterance();
+    function dire(){
+        speech.text = text;
+        speech.rate = 1;
+        speech.volume = 1;
+
+        speech.pitch = 1;
+        speech.lang = "en-US";
+        speechSynthesis.speak(speech);
+       
+    }
+
+</script>
+<button onclick="dire()">speak</button>

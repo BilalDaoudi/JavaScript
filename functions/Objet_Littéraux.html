@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const personne = {
+            nom: "eeee",
+            prenom: "eeee",
+            age: "eeee",
+            email: "eeee",
+          Afficher : function() {
+                document.write("Nom : ", this.nom, " ", this.prenom, "<br>", "Age : ", this.age, "<br>", "Email : ", this.email)
+            }
+
+        };
+    </script>
+</head>
+
+<body>
+    
+    <h1>Title principal</h1>
+<p>Un paragraphe </p><br>
+<script>
+    var n = prompt("donner le nom");
+    var p = prompt("donner le prénom");
+    var a = prompt("donner l'age");
+    var e = prompt("donner l'amail");
+    personne.nom = n;
+    personne.prenom = p;
+    personne.age = a;
+    personne.email = e;
+    personne.Afficher();
+    alert("Bonjour,"+"je suis "+personne.prenom+ ",j'ai " +personne.age+" age")
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date</title>
+</head>
+<body>
+
+
+    <script>
+
+        // Date Time de Système =============================================
+        var dt = new Date();
+        //alert(dt);
+
+        // Creer Date Time ==================================================
+        var dt1 = new Date(2002,02,23,23,55,12);
+        // ou
+        var dt1 = new Date("2002-02-22 12:55:06");
+        //alert(dt1);
+
+        // Get Date 
+        var date = dt1.toDateString();
+        //alert(date)
+
+        // Get Time 
+        var time = dt1.toTimeString();
+        //alert(time)
+        
+        // Get Année 
+        var a = dt.getFullYear();
+        // Get Mois 
+        var m = dt.getMonth();
+        // Get Jour 
+        var j = dt.getDay();
+        // Get Heur 
+        var h = dt.getHours()
+        // Get Minute 
+        var min = dt.getMinutes();
+        // Get Second
+        var s = dt.setSeconds();
+        // Get Millsecond 
+        var ms = dt.getMilliseconds();
+
+
+        // Set Année 
+        dt1.setFullYear(2002);
+        // Set Mois  et Set Jour
+        dt1.setMonth(5,6);
+        // Set Heur 
+        dt1.setHours(12)
+        // Set Minute 
+        dt1.setMinutes(3);
+        // Set Second
+        dt1.setSeconds(5);
+        // Set Millsecond 
+        dt1.setMilliseconds(20);
+
+    </script>
+    
+</body> 
+</html>

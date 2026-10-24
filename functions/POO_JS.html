@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POO</title>
+</head>
+
+<body>
+    <script>
+
+        class Personne {
+            constructor(nom, prenom, age) {
+                this.Nom = nom;
+                this.Prenom = prenom;
+                this.Age = age;
+            }
+        }
+        class Stagiaire extends Personne {
+            constructor(nom, prenom, age, ni, filiere) {
+                super(nom, prenom, age);
+                this.NumInsc = ni;
+                this.Filiere = filiere;
+            }
+
+            Show() {
+                let ch = "<div class='personne'>" + this.Nom + " " + this.Prenom + "</div>";
+                document.getElementById("all").innerHTML += ch;
+            }
+        }
+
+
+
+        document.getElementById("btn").addEventListener("click", function Add_Stagiaire() {
+            let nom = document.getElementById("nom").value;
+            let pr = document.getElementById("pr").value;
+            let ag = document.getElementById("ag").value;
+            let ni = document.getElementById("ni").value;
+            let fi = document.getElementById("fi").value;
+            let stg = new Stagiaire(nom, pr, ag, ni, fi);
+            stg.Show();
+        })
+    </script>
+    <input type="text" id="nom" placeholder="Nom"><br>
+    <input type="text" id="pr" placeholder="Prénom"><br>
+    <input type="number" id="ag" placeholder="Age"><br>
+    <input type="number" id="ni" placeholder="Numéro Inscription"><br>
+    <input type="text" id="fi" placeholder="Filiére"><br>
+    <button id="btn">Ajouter</button>
+
+
+
+
+    <div id="all">
+
+    </div>
+
+
+
+
+</body>
+
+</html>

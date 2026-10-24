@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const personnes = [
+            "daoudi111",
+            "daoudi222",
+            "daoudi333",
+            "daoudi444",
+            "daoudi555",
+            "daoudi666"
+        ];
+
+        const copyPersonnes = [...personnes];
+        // splice(start,length)
+        copyPersonnes.splice(0,1);
+        // console.log(copyPersonnes);
+
+        // splice(start,length,replace)
+        copyPersonnes.splice(0,1,"bilal");
+        // console.log(copyPersonnes);
+
+        // splice(index start , index end)
+        const personnes_selected = personnes.slice(2,4);
+        console.log(personnes_selected)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            width: 300px;
+            height: 30px;
+        }
+        input[type="button"] {
+            color: aliceblue;
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function Valider() {
+            var Exp_CNE = /^[0-9]{14}$/;
+            var Exp_Nom = /^[A-Z]{1}[a-z]{2,}$/;
+            var Exp_Email = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}\.[a-zA-Z]{2,3}$/;
+            var Exp_Date = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
+
+            let cne = document.getElementById("cne").value;
+            let nom = document.getElementById("nom").value;
+            let email = document.getElementById("email").value;
+            let date = document.getElementById("dt").value;
+
+            if (Exp_CNE.test(cne) && Exp_Nom.test(nom) && Exp_Email.test(email) && Exp_Date.test(date)) {
+                let T = date.split("/")
+                let m = parseInt(T[1])
+                let j = parseInt(T[0])
+                let a = parseInt(T[2])
+                switch (m) {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12: if (j <= 31 && j > 0)
+                        not_rouge();
+                    else
+                        rouge();
+                        break;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11: if (j <= 30 && j > 0)
+                        not_rouge();
+                    else
+                        rouge();
+                        break;
+                    case 2: if (a % 4 == 0) {
+                        if (j <= 29 && j > 0)
+                            not_rouge();
+                        else
+                            rouge();
+                    }
+                    else {
+                        if (j <= 28 && j > 0)
+                            not_rouge();
+                        else
+                            rouge();
+                    }
+                }
+            }
+            else
+                rouge();
+        }
+        function rouge() {
+            document.getElementById("etoile1").setAttribute("style", "color:red;font-size:20px;");
+            document.getElementById("etoile2").setAttribute("style", "color:red;font-size:20px;");
+            document.getElementById("etoile3").setAttribute("style", "color:red;font-size:20px;");
+            document.getElementById("etoile4").setAttribute("style", "color:red;font-size:20px;");
+        }
+        function not_rouge() {
+            document.getElementById("etoile1").setAttribute("style", "color:;font-size:;");
+            document.getElementById("etoile2").setAttribute("style", "color:;font-size:;");
+            document.getElementById("etoile3").setAttribute("style", "color:;font-size:;");
+            document.getElementById("etoile4").setAttribute("style", "color:;font-size:;");
+        }
+    </script>
+    <form>
+        CNE <label id="etoile1">*</label><br>
+        <input type="text" name="cne" id="cne" placeholder="Tapez le CNE"><br><br>
+        Nom <label id="etoile2">*</label><br>
+        <input type="text" name="nom" id="nom" placeholder="Tapez le nom"><br><br>
+        Email <label id="etoile3">*</label><br>
+        <input type="text" name="email" id="email" placeholder="Tapez l'adresse email"><br><br>
+        Date de naissance <label id="etoile4">*</label><br>
+        <input type="text" name="dt" id="dt" placeholder="Tapez la Date de naissance"><br><br>
+        <input type="button" value="Valider" onclick="Valider()">
+    </form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<script>
+    const personne = {
+        nom: "Daoudi",
+        age: 23,
+        adresse: { rue: 20, ville: "Jaadar" }
+    }
+    // const nom = personne.nom
+    // const age = personne.age
+    // const rue = personne.adresse.rue
+    // const ville = personne.adresse.ville
+    // console.log(nom, age, rue, ville)
+
+    
+    //est identique à:
+
+    const { nom, age, adresse: { rue }, adresse: { ville } } = personne
+    console.log(nom, age, rue, ville)
+
+</script>

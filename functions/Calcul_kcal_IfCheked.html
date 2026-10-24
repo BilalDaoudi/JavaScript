@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function showStatus(f) {
+            if (f.elements["in1"].checked == true) {
+                f.elements["pai"].disabled = false
+            }
+            if (f.elements["in2"].checked == true) {
+                f.elements["viand"].disabled = false
+            }
+            if (f.elements["in3"].checked == true) {
+                f.elements["legum"].disabled = false
+            }
+            if (f.elements["in4"].checked == true) {
+                f.elements["banan"].disabled = false
+            }
+            if (f.elements["in5"].checked == true) {
+                f.elements["pomm"].disabled = false
+            }
+            if (f.elements["in6"].checked == true) {
+                f.elements["yaour"].disabled = false
+            }
+        }
+        function Calcule(f) {
+            var som = 0;
+            var motifNa = /[0-9]+/;
+            if (f.elements["pai"].disabled == false) {
+                let pa = f.elements["pai"].value;
+                if (motifNa.test(pa) == false) {
+                    alert("Mauvaise Saisir");
+                }
+                else {
+                    var a = parseFloat(pa);
+                    som += a * 2.75;
+
+                }
+            }
+                if (f.elements["viand"].disabled == false) {
+                    let vai = f.elements["viand"].value;
+                    if (motifNa.test(vai) == false) {
+                        alert("Mauvaise Saisir");
+                    }
+                    else {
+                        var v = parseFloat(vai);
+                        som += v * 1.8;
+                    }
+
+                }
+                if (f.elements["legum"].disabled == false) {
+                    let leg = f.elements["legum"].value;
+                    if (motifNa.test(leg) == false) {
+                        alert("Mauvaise Saisir");
+                    }
+                    else {
+                        var l = parseFloat(leg);
+                        som += l * 0.4;
+                    }
+
+                }
+                if (f.elements["banan"].disabled == false) {
+                    let fui = f.elements["banan"].value;
+                    if (motifNa.test(fui) == false) {
+                        alert("Mauvaise Saisir");
+                    }
+                    else {
+                        var i = parseFloat(fui);
+                        som += i * 116;
+                    }
+
+                }
+                if (f.elements["pomm"].disabled == false) {
+                    let pom = f.elements["pomm"].value;
+                    if (motifNa.test(pom) == false) {
+                        alert("Mauvaise Saisir");
+                    }
+                    else {
+                        var p = parseFloat(pom);
+                        som += p * 80;
+                    }
+
+                }
+                if (f.elements["yaour"].disabled == false) {
+                    let yaou = f.elements["yaour"].value;
+                    if (motifNa.test(yaou) == false) {
+                        alert("Mauvaise Saisir");
+                    }
+                    else {
+                        var y = parseFloat(yaou);
+                        som += y * 140;
+                    }
+                }
+               f.elements["cal"].value=som
+            }
+
+
+    </script>
+    <form>
+        <pre>
+        <input type="checkbox" name="in1" onclick="showStatus(this.form)"> <label >Pain</label>    <input type="text" name="pai" disabled><label >Grammes</label>
+        <input type="checkbox" name="in2" onclick="showStatus(this.form)"> <label >Viande</label>  <input type="text" name="viand" disabled><label >Grammes</label>
+        <input type="checkbox" name="in3" onclick="showStatus(this.form)"> <label >Légumes</label> <input type="text" name="legum" disabled><label >Grammes</label>
+        <input type="checkbox" name="in4" onclick="showStatus(this.form)"> <label >Banane</label>  <input type="text" name="banan" disabled><label >unités</label>
+        <input type="checkbox" name="in5" onclick="showStatus(this.form)"> <label >Pomme</label>   <input type="text" name="pomm" disabled><label >unités</label>
+        <input type="checkbox" name="in6" onclick="showStatus(this.form)"> <label >yaourt</label>  <input type="text" name="yaour" disabled><label >unités</label>
+    
+        <input type="button" onclick="Calcule(this.form)" value="Calcule"> <input type="text" name="cal" disabled>
+        
+    </pre>
+    </form>
+    <p id="d"></p>
+</body>
+
+</html>

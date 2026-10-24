@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Element</title>
+    <style>
+        table td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function Vider() {
+            document.getElementById("nom").value = "";
+            document.getElementById("prenom").value = "";
+            document.getElementById("age").value = "";
+
+        }
+
+        function Ajouter() {
+
+            let nom = document.getElementById("nom").value;
+            let prenom = document.getElementById("prenom").value;
+            let age = document.getElementById("age").value;
+            if (nom != "" && prenom != "" && age != "") {
+                let table = document.getElementById('tbl');
+                let tr = document.createElement('tr');
+
+                let td1 = document.createElement('td');
+                td1.textContent = nom;
+
+                let td2 = document.createElement('td');
+                td2.textContent = prenom;
+
+                let td3 = document.createElement('td');
+                td3.textContent = age;
+
+                let td4 = document.createElement('td');
+                let btn = document.createElement('button');
+                btn.textContent = "Supprimer";
+                btn.addEventListener("click", function () {
+                    tr.remove();
+                })
+                td4.appendChild(btn)
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+
+                table.appendChild(tr);
+
+            }
+            else
+                alert("Tous les Champs obligatoire");
+
+        }
+    </script>
+
+
+    <form>
+        <pre>
+            Nom     :    <input type="text" id="nom"><br>
+            Prénom  :    <input type="text" id="prenom"><br>
+            Age     :    <input type="number" id="age"><br>
+            <input type="button" id="ajouter" value="Ajouter" onclick="Ajouter()">    <input type="button" id="vider" value="Vider" onclick="Vider()">
+        </pre>
+    </form>
+    <table id="tbl" width="100%">
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Age</th>
+            <th>Opération</th>
+        </tr>
+    </table>
+
+</body>
+
+</html>

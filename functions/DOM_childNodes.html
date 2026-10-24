@@ -1,0 +1,9 @@
+<div>
+    <p id="myP">Un peu de texte, <a>un lien</a> et <strong>une portion en
+            emphase</strong></p>
+</div>
+<script>
+let div = document.getElementById("myP");
+    for(i=0 ; i<div.childNodes.length ;i++)
+    alert(div.childNodes[i].nodeName)
+</script>

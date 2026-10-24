@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP2</title>
+    <script>
+        function surCer(r) {
+
+
+            sr = 3.14 * r * r;
+            document.write("la surface est :" + sr);
+
+        }
+        function pereCer(r) {
+
+            pr = 3.14 * 2 * r;
+            document.write("le péremètre est :" + pr);
+        }
+        function surRec(la, lo) {é
+            per = la * lo;
+            document.write("la surface est :" + per);
+
+        }
+        function pereRec(la, lo) {
+            sur = la * 2 + lo * 2;
+            document.write("le péremètre est :" + sur);
+
+        }
+        function rayon() {
+            ray = parseFloat(prompt("donner le rayon"));
+        }
+        function lonlar() {
+            lar = parseFloat(prompt("donner la largeur"));
+            log = parseFloat(prompt("donner la longueur"));
+
+        }
+    </script>
+</head>
+
+<body>
+
+    <a href="#" onclick="rayon(),pereCer(ray)">Calculer le périmètre d'un cercle</a><br>
+    <a href="#" onclick="rayon(),surCer(ray)">Calculer la surface d'un cercle</a><br>
+    <a href="#" onclick="lonlar() ,pereRec(lar,log)">Calculer le périmètre d'un rectangle</a><br>
+    <a href="#" onclick="lonlar() ,surRec(lar,log)">Calculer la surface d'un rectangle</a>
+</body>
+
+</html>
