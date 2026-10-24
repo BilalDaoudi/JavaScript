@@ -1,0 +1,61 @@
+.tout{
+    background-color: #666F88;
+    width: 650px;
+    height: 900px;
+    margin-left: 280px;
+}
+#Titre{
+    color:aliceblue ;
+    text-align: center;
+    font-size: 50px;
+}
+.inp{
+    margin-left: 230px;
+}
+.inp label{
+    margin-left: 60px;
+}
+.inp #dt{
+    margin-left: 25px;
+}
+.inp #date{
+    margin-left: 18px;
+}
+.radio{
+    margin-left: 254px;
+}
+.inp #pseu{
+    margin-left: 15px;
+}
+.inp #email{
+    margin-left: -50px;
+}
+.inp #motpass1{
+    margin-left: 35px;
+}
+.inp #motpass2{
+    margin-left: 0px;
+}
+.inptext{
+    width: 200px;
+    margin-left: -15px;
+}
+.inp #photo{
+    margin-left: 15px;
+}
+.inp input[type="file"]{
+    margin-left: 25px;
+}
+.inp textarea{
+    margin-left: -110px;
+}
+.check{
+    margin-left: 240px;
+}
+.butt{
+    margin-left: 30px;
+}
+.butt input{
+    height: 30px;
+}
+

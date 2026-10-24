@@ -1,0 +1,34 @@
+1--/ Différence entre Java et Javascript est :
+
+2--/Les type de données natifs existants en Javascript est :
+    -Numbre
+    -String
+    -Boolean
+    -Undefined
+    -Objet et Array
+
+3--/La fonction isNaN est Une fonction qui a un argement (string) est retourn un booleen on:
+    - retourn true if l'argement egale Chaine vide ou null.
+    - retourn false if l'argement different le Chaine vide ou null.
+
+
+4--/ Les méthode pour Créer les objets est :
+    - 
+    -
+
+5--/ 0,3,3,3.
+    1,3,6,3.
+    2,3,9,3.
+    3,3,12,3.
+
+6--/
+    let nb = prompt('nombre  :');
+    if (nb > 0){
+        alert("Nombre Positive");
+    }
+    if (nb < 0){
+        alert("Nombre Négative");
+    }
+    if (nb == 0){
+        alert("Nombre égale 0");
+    }

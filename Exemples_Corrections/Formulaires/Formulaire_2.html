@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+</head>
+
+<body>
+    <script>
+        function Vider() {
+            document.getElementById("nom").value = "";
+            document.getElementById("prenom").value = "";
+            document.getElementById("recevoir").checked = false;
+            document.getElementById("pays").value = document.getElementById("choisir").value;
+            document.getElementById("Masculin").checked = false;
+            document.getElementById("Feminin").checked = false;
+            document.getElementById("autre").checked = false;
+            document.getElementById("informatique").checked = false;
+            document.getElementById("psychologie").checked = false;
+            document.getElementById("pedagogie").checked = false;
+            document.getElementById("commentaire").value = "";
+        }
+
+        function Enregistrer() {
+            let existe = true;
+            if (document.getElementById("nom").value == "") {
+                alert("Donner Votre Nom ");
+                existe = false;
+            }
+            if (document.getElementById("prenom").value == "") {
+                alert("Donner Votre Prénom ");
+                existe = false;
+            }
+            if (document.getElementById("pays").value == document.getElementById("choisir").value) {
+                alert("Choisir Votre Pays");
+                existe = false;
+            }
+            if (document.getElementById("Masculin").checked == false && document.getElementById("Feminin").checked == false) {
+                alert("Donner Votre Sexe");
+                existe = false;
+            }
+            if ((document.getElementById("autre").checked == false) && (document.getElementById("informatique").checked == false) && (document.getElementById("psychologie").checked == false) && (document.getElementById("pedagogie").checked == false)) {
+                alert("Donner Votre Choisir Domaine ")
+                existe = false;;
+            }
+            if (document.getElementById("commentaire").value == "") {
+                alert("Donner une Commentaire");
+                existe = false;
+            }
+            if (existe == true){
+                alert("Les Information est Enregistré")
+            }
+
+        }
+    </script>
+
+
+    <label><b> Nom </b></label>
+    <br>
+    <input type="text" name="nom" id="nom">
+    <br>
+    <br>
+    <label><b> Prénom </b></label>
+    <br>
+    <input type="text" name="prenom" id="prenom">
+    <br>
+    <br>
+    <label><b>Je désire recevoir un documentation </b></label><input type="checkbox" name="recevoir" id="recevoir">
+    <br>
+    <br>
+    <label><b>Pays</b></label>
+    <select name="pays" id="pays">
+        <option id="choisir">Choisir pays</option>
+        <option id="Maroc">Maroc</option>
+        <option id="Espagnol">Espagnol</option>
+        <option id="France">France</option>
+        <option id="Brazil">Brazil</option>
+        <option id="Suisse">Suisse</option>
+    </select>
+    <br>
+    <br>
+    <label><b>Sexe :</b></label>
+    <input type="radio" name="Masculin" id="Masculin">
+    <label>Masculin </label>
+    <input type="radio" name="Feminin" id="Feminin">
+    <label>Féminin </label>
+    <br>
+    <h3>Domaine(s) d'activite</h3>
+    <p>Vous pouvez en choisir plus qu'un...</p>
+    <input type="checkbox" name="pedagogie" id="pedagogie">
+    <label>Pedagogie</label>
+    <input type="checkbox" name="psychologie" id="psychologie">
+    <label>Psychologie</label>
+    <input type="checkbox" name="informatique" id="informatique">
+    <label>Informatique</label>
+    <input type="checkbox" name="autre" id="autre">
+    <label>Autre</label>
+    <br>
+    <br>
+    <b>Commentaire</b>
+    <br>
+    <br>
+    <p>Si vous voulez vous pouvez decrire vos activites ou interets</p>
+    <br>
+    <textarea name="commentaire" id="commentaire" cols="60" rows="6"></textarea>
+    <br>
+    <br>
+    <button id="vider" onclick="Vider()">Effacer les données</button>
+    <button id="enredistrer" onclick="Enregistrer()">Enregistrer les données</button>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

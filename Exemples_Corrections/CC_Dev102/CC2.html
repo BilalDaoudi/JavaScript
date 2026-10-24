@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC2</title>
+    <style>
+        select {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function change(x, y) {
+            let valeurs = document.getElementById(x);
+            for (let i = 0; i < 6; i++) {
+                if (valeurs[i].selected) {
+                    document.getElementById(y).appendChild(valeurs[i]);
+                }
+            }
+        }
+    </script>
+
+    <select id="slc1" multiple size="6" >
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>        
+    </select>
+    <input type="button" value="--->" onclick="change('slc1','slc2')">
+    <input type="button" value="<---" onclick="change('slc2','slc1')">
+    <select id="slc2" multiple size="6" >
+
+    </select>
+
+</body>
+
+</html>

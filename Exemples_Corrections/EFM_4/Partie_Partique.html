@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFM</title>
+</head>
+
+<body onload="NoteMax()">
+    <script>
+
+        function Validation() {
+            let id = document.getElementById("id").value;
+            let nom = document.getElementById("nom").value;
+            let note = document.getElementById("note").value;
+            if (id != "" && nom != "" && note != "") {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+
+
+        function Ajouter() {
+
+            let valider = Validation();
+
+            let tdi = document.getElementById("tdi");
+            let tdm = document.getElementById("tdm");
+            let tri = document.getElementById("tri");
+
+            let tbl = document.getElementById("tbl");
+
+            if (valider) {
+                let id = document.getElementById("id").value;
+                let nom = document.getElementById("nom").value;
+                let note = document.getElementById("note").value;
+                if (tdi.checked || tdm.checked || tri.checked) {
+                    let filiere = "";
+                    if (tdi.checked)
+                        filiere = "TDI";
+                    if (tdm.checked)
+                        filiere = "TMD";
+                    if (tri.checked)
+                        filiere = "TRI";
+
+
+                    let tr = document.createElement('tr');
+
+                    let td1 = document.createElement("td");
+                    td1.setAttribute("class", "id");
+                    td1.textContent = id;
+
+                    let td2 = document.createElement("td");
+                    td2.setAttribute("class", "nom");
+                    td2.textContent = nom;
+
+                    let td3 = document.createElement("td");
+                    td3.setAttribute("class", "note");
+                    td3.textContent = note;
+
+                    let td4 = document.createElement("td");
+                    td4.setAttribute("class", "filiere");
+                    td4.textContent = filiere;
+
+                    if (note < 10)
+                        td3.setAttribute("style", "color:red");
+                    else
+                        td3.setAttribute("style", "color:Green");
+
+                    let td5 = document.createElement("td");
+                    let btn = document.createElement("button");
+                    btn.addEventListener("click", function () {
+                        let sure = confirm("Sure ?");
+                        if (sure) {
+                            tr.remove();
+                        }
+                        NoteMax();
+                    })
+
+                    btn.textContent = "Supprimer";
+                    td5.appendChild(btn)
+
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
+
+                    tbl.appendChild(tr);
+                    NoteMax();
+                }
+
+            }
+            else {
+                alert("Tous les champs Obligatoires")
+            }
+        }
+
+
+        function Lire() {
+            let id = document.getElementById("id").value;
+            if (id != "") {
+                let T_id = document.getElementsByClassName("id");
+                let T_nom = document.getElementsByClassName("nom");
+                let T_note = document.getElementsByClassName("note");
+                let T_filiere = document.getElementsByClassName("filiere");
+
+                for (let i = 0; i < T_id.length; i++) {
+                    if (T_id[i].textContent == id) {
+                        document.getElementById("nom").value = T_nom[i].textContent;
+                        document.getElementById("note").value = T_note[i].textContent;
+                        if (T_filiere[i].textContent == "TDI")
+                            document.getElementById("tdi").checked = true;
+                        if (T_filiere[i].textContent == "TMD")
+                            document.getElementById("tmd").checked = true;
+                        if (T_filiere[i].textContent == "TRI")
+                            document.getElementById("tri").checked = true;
+                    }
+                }
+            }
+
+        }
+
+        function NoteMax() {
+            let T_NOTE = [];
+            let T_note = document.getElementsByClassName("note");
+
+            for (let i = 0; i < T_note.length; i++) {
+                T_NOTE.push(parseFloat(T_note[i].textContent));
+            }
+
+            let T_trier = T_NOTE.sort(function (a, b) { return a - b });
+
+            document.getElementById("max").textContent = T_trier[T_trier.length - 1]
+        }
+
+
+        function Supprimer(id) {
+            let sure = confirm("Sure ?");
+            if (sure) {
+                document.getElementById(id).remove();
+            }
+            NoteMax();
+        }
+
+
+
+    </script>
+
+
+
+    <h1>Notes des Stagiaire</h1>
+    <fieldset>
+        <legend>Nouvelle ligne</legend>
+        ID : <input type="text" id="id"> <input type="button" value="Lire" onclick="Lire()"><br><br>
+        Nom : <input type="text" id="nom"><br><br>
+        Filiere : <input type="radio" name="filiere" id="tdi"> TDI
+        <input type="radio" name="filiere" id="tdm"> TDM
+        <input type="radio" name="filiere" id="tri"> TRI
+        <br><br>
+        Note : <input type="text" id="note"><br><br>
+        <input type="button" value="Ajouter la note" onclick="Ajouter()">
+    </fieldset>
+
+    <h1>Liste des notes</h1>
+
+    <table width="100%" border="1" id="tbl">
+        <tr>
+            <th>ID</th>
+            <th>NOM</th>
+            <th>NOTE</th>
+            <th>FILIERE</th>
+            <th>GESTION</th>
+        </tr>
+        <tr id="tr1">
+            <td class="id">12</td>
+            <td class="nom">Bilal Daoudi</td>
+            <td class="note" style="color:green ;">15</td>
+            <td class="filiere">TDI</td>
+            <td><button onclick="Supprimer('tr1')">Supprimer</button></td>
+        </tr>
+    </table>
+    <table border="1" id="tbl">
+        <tr>
+            <th>La Meilleur Note :</th>
+            <td id="max"></td>
+
+        </tr>
+    </table>
+</body>
+
+</html>

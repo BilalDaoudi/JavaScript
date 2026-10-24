@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!----------------------------- ToastifyJs script ------------------------------->
+
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="./Assets/CSS/toastify.min.css">    
+    <script type="text/javascript" src="./Assets/JS/toastify-js.js"></script>
+    
+
+    <!--------------------------------Style Files ------------------------------------------>
+    <link
+      rel="stylesheet"
+      href="./Assets/CSS/bootstrap.min.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./Assets/CSS/all.min.css" type="text/css" />
+    <link rel="stylesheet" href="./Assets/CSS/style.css" type="text/css" />
+
+    <title>DB | Crud System Template</title>
+
+    <!-------------------------------Browser logo------------------------------------------->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://logopond.com/logos/70a5a28358a0f80718ac4f6737f018ae.png"
+    />
+  </head>
+  <body>
+    <div class="w-75 m-auto shadow-lg p-5 my-5 bg-light">
+      <h1 class="fw-bolder text-uppercase text-center mb-4">Crud system</h1>
+      <label for="pname" class='mt-3'>Product Name:</label>
+      <input type="text" class="form-control " id="pname" />
+      <div id="prodName-alert" class="alert alert-warning d-none mb-1" role="alert"> Product Name is required* </div>
+      <label for="pcategory" class='mt-3'>Product Category:</label>
+      <input type="text" class="form-control " id="pcategory" />
+      <div id="prodCat-alert" class="alert alert-warning d-none mb-1" role="alert"> Product Category is required* </div>
+      <label for="price" class='mt-3'>Product Price:</label>
+      <input type="text" class="form-control " id="price" />
+      <div id="prodPrice-alert" class="alert alert-warning d-none mb-1" role="alert"> Product Price is required* </div>
+      <label class='mt-3'>Product Description</label>
+      <textarea id="desc" class="form-control "> </textarea>
+      <div id="prodDesc-alert" class="alert alert-warning d-none mb-1" role="alert"> Product Description is required* </div>
+      <button
+        class="btn btn-primary w-100 d-block disabled mt-3"
+        id="addBtn"
+      >Add Product</button>
+      <button
+        class="btn btn-primary w-100 d-block d-none mt-3"
+        id="updateBtn"
+      >Update Product</button>
+      <!-- <button class="btn btn-primary" onclick="create()" id="toggleButton">Add Product</button> -->
+      <!-- <button class="btn btn-danger" onclick="reset()">rest</button> -->
+    </div>
+
+    <!-- real timee Search (the one WITHOUT BUTTON) -->
+    <!-- onkeyup="searchProduct()" -->
+    <input
+      placeholder="Search by Product Name..."
+      class="form-control w-50 m-auto"
+      id="searchInput"
+    />
+
+    <div>
+      <table class="table w-75 m-auto my-4 bg-light">
+        <thead>
+          <tr>
+            <th>index</th>
+            <th>name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>desc</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <!----------------------------- Bootstrap script ------------------------------->
+
+    <script src="./Assets/JS/bootstrap.bundle.min.js"></script>
+
+    <!----------------------------- My script ------------------------------->
+
+    <script src="./Assets/JS/index.js"></script>
+  </body>
+</html>

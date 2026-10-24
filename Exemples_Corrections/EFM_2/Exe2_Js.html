@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let div1 = document.createElement("div");
+        div1.setAttribute("class", "main-block");
+        div1.setAttribute("style", "display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; padding:25px;");
+
+        let div2 = document.createElement("div");
+        div2.setAttribute("style", "text-align:center;padding:25px;");
+        div2.setAttribute("class", "left-part");
+        let h1 = document.createElement("h1");
+        h1.textContent = "Vous enregistrer au sport";
+        div2.appendChild(h1);
+        div1.appendChild(div2);
+
+        let form = document.createElement("form");
+        form.setAttribute("style", "padding:25px; background:rgba(0,0,0,0.1)");
+
+        let div3 = document.createElement("div");
+        div3.setAttribute("style", "display:flex;align-items:center; margin-bottom:20px;");
+        div3.setAttribute("class", "title");
+        let h2 = document.createElement("h1");
+        h2.textContent = "Abonnez-vous";
+        div3.appendChild(h2);
+        form.appendChild(div3);
+
+        let div4 = document.createElement("div");
+        div4.setAttribute("style", "display:flex; flex-direction:column;");
+        div4.setAttribute("class", "info");
+
+        let inp1 = document.createElement("input");
+        inp1.setAttribute("style", "padding:5px;margin-bottom:30px; background:transparent; border:none; border-bottom:1px solid black;");
+        inp1.setAttribute("type", "text");
+        inp1.setAttribute("name", "name");
+        inp1.setAttribute("placeholder", "Nom et prénom");
+        div4.appendChild(inp1);
+
+        let inp2 = document.createElement("input");
+        inp2.setAttribute("style", "padding:5px;margin-bottom:30px; background:transparent; border:none; border-bottom:1px solid black;");
+        inp2.setAttribute("type", "text");
+        inp2.setAttribute("name", "email");
+        inp2.setAttribute("placeholder", "Email");
+        div4.appendChild(inp2);
+
+        let inp3 = document.createElement("input");
+        inp3.setAttribute("style", "padding:5px;margin-bottom:30px; background:transparent; border:none; border-bottom:1px solid black;");
+        inp3.setAttribute("type", "text");
+        inp3.setAttribute("name", "tel");
+        inp3.setAttribute("placeholder", "Numéro de téléfone");
+        div4.appendChild(inp3);
+
+        let slct = document.createElement("select");
+        slct.setAttribute("style", "padding:5px;margin-bottom:30px; background:transparent; border:none; border-bottom:1px solid black;");
+        let op1 = document.createElement("option");
+        op1.setAttribute("value", "sport-type");
+        op1.setAttribute("selected", "true");
+        op1.textContent = "Type de sport*";
+
+        let op2 = document.createElement("option");
+        op2.setAttribute("value", "Football");
+        op2.textContent = "Football";
+
+        let op3 = document.createElement("option");
+        op3.setAttribute("value", "Tennis");
+        op3.textContent = "Tennis";
+
+        slct.appendChild(op1);
+        slct.appendChild(op2);
+        slct.appendChild(op3);
+        div4.appendChild(slct);
+
+
+        form.appendChild(div4);
+
+        let inp4 = document.createElement("input");
+        inp4.setAttribute("style", "padding:5px;margin-bottom:30px; background:transparent; border:none; border-bottom:1px solid black; width=100%;");
+        inp4.setAttribute("type", "button");
+        inp4.setAttribute("value", "Envoyer");
+        form.appendChild(inp4);
+
+        div1.appendChild(form);
+
+        document.body.appendChild(div1);
+
+        function Validation() {
+            let name = document.getElementsByName("name")[0].value;
+            let email = document.getElementsByName("email")[0].value;
+            let tel = document.getElementsByName("tel")[0].value;
+            let sport = document.querySelector("select").value;
+            if (name != "" && email != "" && tel != "" && sport != "sport-type") {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    
+        function Vereftel() {
+            let tel = document.getElementsByName("tel")[0].value;
+            if (tel.length != 10) {
+                alert("Erreurs");
+            }
+        }
+        function Vider() {
+            document.getElementsByName("name")[0].value = "";
+            document.getElementsByName("email")[0].value = "";
+            document.getElementsByName("tel")[0].value = "";
+            document.querySelector("select").value = document.querySelector("select").children[0].value;
+        }
+
+        var Type = [
+            { "nom": "Football", "prix": 1000 },
+            { "nom": "Tennis", "prix": 2000 }
+        ]
+        function RemplirType() {
+            let slct = document.querySelector("select");
+            for (i = 0; i < Type.length; i++) {
+                slct.innerHTML += "<option value=" + Type[i].nom + ">" + Type[i].nom + "</option>";
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

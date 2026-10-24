@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insccription</title>
+    <style>
+        .tout {
+            border: black solid 2px;
+            border-radius: 30px;
+            background-color: gray;
+            width: 400px;
+            height: 710px;
+            position: relative;
+            left: 500px;
+
+        }
+
+        input {
+            border: black solid 1px;
+            border-radius: 7px;
+        }
+
+        #btninscrice {
+            color: blue;
+            width: 150px;
+            height: 25px;
+        }
+
+        #foto {
+            width: 115px;
+        }
+
+        b {
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var telefone1 = /^[0]{1}[0-9]{9}$/;  // if telephone 0**********
+        var telefone2 = /^[+]{1}[2]{1}[1]{1}[2]{1}[0-9]{9}$/;  // if telephone +212 *********
+        var email = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/
+        function verefier() {
+            if (document.getElementById("chkbox").checked) {
+                let existe = true;
+                let nom = document.getElementById("nom");
+                if (nom.value == ""){
+                    nom.setAttribute("style", "border:red 2px solid;");
+                    existe = false;
+
+                }
+                else
+                    nom.setAttribute("style", "border:;")
+
+
+                let prenom = document.getElementById("prenom");
+                if (prenom.value == ""){
+                    prenom.setAttribute("style", "border:red 2px solid;");
+                    existe = false;
+                }
+                else
+                    prenom.setAttribute("style", "border:;")
+
+                let date = document.getElementById("date");
+                if (date.value == ''){
+                    date.setAttribute("style", "border:red 2px solid;")
+                    existe = false;}
+                else
+                    date.setAttribute("style", "border:;")
+
+
+                if (document.getElementById("homme").checked == false && document.getElementById("femme").checked == false) {
+                    document.getElementById("h").setAttribute("style", "color:gold;");
+                    document.getElementById("f").setAttribute("style", "color:gold;");
+                    existe = false;
+                }
+                else {
+                    document.getElementById("h").setAttribute("style", "color:black;");
+                    document.getElementById("f").setAttribute("style", "color:black;");
+                }
+
+
+                let telefone = document.getElementById("tele");
+                if (telefone1.test(telefone.value) == false && telefone2.test(telefone.value) == false){
+                    telefone.setAttribute("style", "border:red 2px solid;");
+                    existe = false;}
+                else
+                    telefone.setAttribute("style", "border:;")
+
+
+                let mail = document.getElementById("email");
+                if (email.test(mail.value) == false){
+                    mail.setAttribute("style", "border:red 2px solid;");
+                    existe = false;}
+                else
+                    mail.setAttribute("style", "border:;")
+
+                let password1 = document.getElementById("motpasse1");
+                if (password1.value == ""){
+                    password1.setAttribute("style", "border:red 2px solid;");
+                    existe = false;}
+                else
+                    password1.setAttribute("style", "border:;")
+
+                let password2 = document.getElementById("motpasse2");
+                if (password2.value == "" || password1.value != password2.value){
+                    password2.setAttribute("style", "border:red 2px solid;");
+                    existe = false;}
+                else
+                    password2.setAttribute("style", "border:;")
+
+                let qt = document.getElementById("question");
+                if (qt.value == "choisir"){
+                    qt.setAttribute("style", "border:red 2px solid;");
+                    existe = false;}
+                else
+                    qt.setAttribute("style", "border:;")
+
+                let reponse = document.getElementById("reponse")
+                if (reponse.value == ""){
+                    reponse.setAttribute("style", "border:red 2px solid;");
+                    existe = false;}
+                else
+                    reponse.setAttribute("style", "border:;")
+
+                if (existe == true)
+                    document.getElementById("btninscrice").disabled = false;
+                else
+                    document.getElementById("chkbox").checked = false;
+            }
+            else
+                document.getElementById("btninscrice").disabled = true;
+
+        }
+    </script>
+    <div class="tout">
+        <center>
+
+            <form action="Home_Page.php" method="post">
+                <b> Nom :</b><br>
+                <input type="text" id="nom" name="nom">
+                <br><br>
+                <b> Prénom :</b><br>
+                <input type="text" id="prenom" name="prenom">
+                <br><br>
+                <b> Date de naissance :</b><br>
+                <input type="date" id="date" name="date">
+                <br><br>
+                <b id="h"> Homme</b><input type="radio" name="sexe" id="homme" value="H">
+                <b id="f">Femme</b><input type="radio" name="sexe" id="femme" value="F">
+                <br><br>
+                <labe> Votre Téléphone :</b><br>
+                    <input type="text" name="tele" id="tele" placeholder="+212 ********* ou 0*********">
+                    <br><br>
+                    <b> Votre email :</b><br>
+                    <input type="email" name="email" id="email" placeholder="xxxxxxxxxx@dev102.bk">
+                    <br><br>
+                    <b> mot de passe : </b><br>
+                    <input type="password" id="motpasse1" name="motpasse1">
+                    <br><br>
+                    <b>Confirmer mot de passe : </b><br>
+                    <input type="password" id="motpasse2" name="motpasse2">
+                    <br><br>
+                    <b>Votre Photo : </b><br>
+                    <input type="file" id="foto" name="foto">
+                    <br><br>
+                    <b>Question : </b><br>
+                    <select name="question" id="question">
+                        <option value="choisir">Choisir Question</option>
+                        <option value="q1">Votre ville de naissance ?</option>
+                        <option value="q2">Nom ton mére ?</option>
+                        <option value="q3">Nom ton pére ?</option>
+                    </select>
+                    <br><br>
+                    <b> Votre Réponse :</b><br>
+                    <input type="text" id="reponse" name="reponse">
+                    <br><br>
+                    <input type="checkbox" id="chkbox" name="chkbox" onchange="verefier()">
+                    <b>J'ai fais la vérification</b>
+                    <br><br>
+                    <input type="submit" value="S'inscrire" disabled id="btninscrice" name="btninscrice">
+            </form>
+        </center>
+    </div>
+
+    
+</body>
+
+</html>

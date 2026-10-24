@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="CSS/Style_Formulaire.css">
+
+</head>
+
+<body>
+    <script>
+        function check_Inscrire(){
+            if (document.getElementById("checkbox").checked == true){
+                document.getElementById("btninscrice").disabled  = false
+            }
+            if (document.getElementById("checkbox").checked == false){
+                document.getElementById("btninscrice").disabled = true
+            }
+        }
+
+        function vider_click(){
+            document.getElementById("nom").value=""
+            document.getElementById("prenom").value=""
+            document.getElementById("pseudo").value=""
+            document.getElementById("e-mail").value=""
+            document.getElementById("motpasse1").value=""
+            document.getElementById("motpasse2").value=""
+            document.getElementById("date").value=NaN
+            document.getElementById("homme").checked=false 
+            document.getElementById("femme").checked=false           
+        }
+
+        function verifier_click(){
+            var email = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
+            let erreur="les informations correcte"
+            if (document.getElementById("nom").value == ""){
+                erreur="Nom \n"
+            }
+            if (document.getElementById("prenom").value == ""){
+                erreur="Prénom \n"
+            }
+            if (document.getElementById("homme").checked == false && document.getElementById("femme").checked == false){
+                erreur="Sexe \n"
+            }
+            if (document.getElementById("pseudo").value == ""){
+                erreur="Pseudo \n"
+            }
+            if ((document.getElementById("e-mail").value == "") || (email.test(document.getElementById("e-mail").value) == false)){
+                erreur="E-mail \n"
+            }
+            if (document.getElementById("motpasse1").value == ""){
+                erreur="Mot passe \n"
+            }
+            if (document.getElementById("motpasse2").value == "" || document.getElementById("motpasse1").value != document.getElementById("motpasse2").value){
+                erreur="confirmé mot passe \n"
+            }
+            alert(erreur)
+            return erreur
+        }
+        function inscrire_click(){
+            let texte=verifier_click()
+            if (texte=="les informations correcte"){
+                alert("Vous avez inscris avec succées")
+            }
+            else{
+                alert("Vérifiez les Informations ")
+            }
+        }
+        
+    </script>
+
+
+
+    <div class="tout">
+        <p id="Titre">Remplir le formulaire</p>
+        <form>
+            <div class="inp">
+                <label><b> Nom :</b></label><br>
+                <input type="text" id="nom"><br>
+            </div>
+            <br>
+            <div class="inp">
+                <label><b> Prénom :</b></label><br>
+                <input type="text"  id="prenom"><br>
+            </div>
+            <br>
+            <div class="inp">
+                <label id="dt"><b> Date de naissance :</b></label><br>
+                <input type="date" id="date"><br>
+            </div>
+            <br>
+            <div class="radio">
+                <label for="homme">Homme</label><input type="radio" name="sexe" id="homme" value="H">
+                <label for="femme">Femme</label><input type="radio" name="sexe" id="femme" value="F">
+            </div>
+            <br>
+            <div class="inp">
+                <label id="pseu"><b> Choisir un pseudo* :</b></label><br>
+                <input type="text"  id="pseudo"><br>
+            </div>
+            <br>
+            <div class="inp">
+                <label id="email"><b> E-mail :exemple :Votre_nom@hotmail.com </b></label><br>
+                <input type="email" class="inptext"  id="e-mail"><br>
+            </div>
+            <br>
+            <div class="inp">
+                <label id="motpass1"><b> mot de passe : </b></label><br>
+                <input type="password" id="motpasse1"><br>
+            </div>
+            <br>
+            <div class="inp">
+                <label id="motpass2"><b>Confirmer mot de passe : </b></label><br>
+                <input type="password"  id="motpasse2"><br>
+            </div>
+            <br>
+            <div class="inp">
+                <label id="photo"><b>Ajouter votre photo : </b></label><br>
+                <input type="file"  id="file"><br>
+            </div>
+            <br>
+            <div class="inp">
+                <label id="photo">exemple d'un contrat : </label><br>
+                <textarea cols="50" rows="7" disabled> ce formulaire est réalisé pour vous:
+pour l'essayer,remplissez le pseudo,le mot de passe et l'e-mail
+puis cliquez sur vérifiez vos informations avant de s'inscrire</textarea>
+            </div>
+            <br>
+            <div class="check">
+                <input type="checkbox" id="checkbox" onclick="check_Inscrire()"> <label>J'ai fais la vérification</label>
+            </div>
+            <br>
+            <br>
+            <div class="butt">
+                <input type="button" value="vérifier vos informations avant de s'inscrire" onclick="verifier_click()">
+                <input type="button" value="S'inscrire" disabled id="btninscrice" onclick="inscrire_click()">
+                <input type="button" value="effacer la saisie" onclick="vider_click()">
+                <input type="button" value="fermer la fenêtre">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

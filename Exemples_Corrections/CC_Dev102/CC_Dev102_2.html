@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exe2</title>
+</head>
+
+<body onload="AjouterLigne(0)">
+    <script>
+        var T_Articles = [
+            { "nom": "clavier", "prix": 150 },
+            { "nom": "souris", "prix": 80 },
+            { "nom": "écran", "prix": 1000 }
+        ]
+        var compteur = 0;
+        function AjouterLigne(x) {
+            let table = document.getElementById("table");
+            let idslct = "slct" + x;
+            let idqt = "qt" + x;
+            let idpu = "pu" + x;
+            let idp = "p" + x;
+            let tr = document.createElement("tr");
+
+            let td1 = document.createElement("td");
+            let slct = document.createElement("select");
+            slct.setAttribute("id", idslct);
+            // slct.setAttribute("onchange", "Prix_Unitaire(x)");
+            slct.addEventListener("change", function () {
+                let n = compteur - 1;
+                let y = "slct" + n;
+                if (document.getElementById(y).value != "Choisir Article") {
+                    AjouterLigne(compteur);
+                }
+
+                if (this.value != "Choisir Article") {
+                    for (let i = 0; i < T_Articles.length; i++) {
+                        if (this.value == T_Articles[i].nom) {
+                            document.getElementById(idpu).value = T_Articles[i].prix;
+                            document.getElementById(idp).value = 0;
+                        }
+                    }
+                }
+                else {
+                    document.getElementById(idqt).value = 0;
+                    document.getElementById(idpu).value = 0;
+                    document.getElementById(idp).value = 0;
+                    Calcule_Total();
+                }
+            }
+            )
+            slct.innerHTML += "<option>" + "Choisir Article" + "</option>";
+            for (let i = 0; i < T_Articles.length; i++) {
+                slct.innerHTML += "<option>" + T_Articles[i].nom + "</option>";
+            }
+            td1.appendChild(slct);
+
+            let td2 = document.createElement("td");
+            let inp1 = document.createElement("input");
+            inp1.setAttribute("type", "number");
+            inp1.setAttribute("id", idqt);
+            inp1.addEventListener("keyup", function () {
+                if (document.getElementById(idslct).value != "Choisir Article") {
+                    if (this.value != "") {
+                        let prix = parseFloat(document.getElementById(idpu).value) * parseInt(this.value);
+                        document.getElementById(idp).value = prix;
+                        Calcule_Total();
+                    }
+                    else {
+                        document.getElementById(idp).value = 0;
+                        Calcule_Total();
+                    }
+                }
+                else {
+                    alert("il faut Choisir Article")
+                }
+            })
+
+            td2.appendChild(inp1);
+
+            let td3 = document.createElement("td");
+            let inp2 = document.createElement("input");
+            inp2.setAttribute("id", idpu);
+            inp2.setAttribute("type", "text");
+            inp2.disabled = true;
+            td3.appendChild(inp2);
+
+            let td4 = document.createElement("td");
+            let inp3 = document.createElement("input");
+            inp3.setAttribute("id", idp);
+            inp3.setAttribute("class", "total");
+            inp3.setAttribute("type", "text");
+            inp3.disabled = true;
+            td4.appendChild(inp3);
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+
+            table.appendChild(tr);
+
+            compteur++;
+        }
+
+        function Calcule_Total() {
+            let Total = 0;
+            let T_total = document.getElementsByClassName('total');
+            for (let i = 0; i < T_total.length - 1; i++) {
+
+                Total += parseFloat(T_total[i].value)
+            }
+            document.getElementById("total").value = Total;
+
+        }
+    </script>
+
+    <table id="table">
+        <tr>
+            <th>Désignation</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th>Prix</th>
+        </tr>
+    </table>
+    <label for="total"> <b>Total</b></label> <input type="text" id="total" disabled>
+
+</body>
+
+</html>

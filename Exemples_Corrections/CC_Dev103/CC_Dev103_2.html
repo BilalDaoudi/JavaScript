@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exe2</title>
+</head>
+
+<body>
+    <script>
+
+        var nombre = /^[0-9]+$/;
+
+        function inscrire() {
+            let valide = verifier_click()
+            if (valide == true) {
+                alert("le formulaire est bien rempli")
+            }
+        }
+
+
+        function verifier_click() {
+            let valide = true;
+            if (document.getElementById("homme").checked == false && document.getElementById("femme").checked == false) {
+                let ph = document.createElement("Button");
+                let texte = document.createTextNode("Vous devez sélectionnez votre Genre");
+                ph.appendChild(texte);
+                if (document.getElementById("td_genre").childNodes.length == 7) {
+                    document.getElementById("td_genre").appendChild(ph);
+                }
+                valide = false;
+
+            }
+            if (document.getElementById("nom").value.length < 2) {
+                let ph = document.createElement("Button");
+                let texte = document.createTextNode("un nom ne peut pas faire moins de 2 caractères");
+                ph.appendChild(texte);
+                if (document.getElementById("td_nom").childNodes.length == 3)
+                    document.getElementById("td_nom").appendChild(ph);
+                valide = false;
+
+            }
+            if (document.getElementById("prenom").value.length < 2) {
+                let ph = document.createElement("Button");
+                let texte = document.createTextNode("un prénom ne peut pas faire moins de 2 caractères");
+                ph.appendChild(texte);
+                if (document.getElementById("td_prenom").childNodes.length == 3)
+                    document.getElementById("td_prenom").appendChild(ph);
+                valide = false;
+            }
+            let age = document.getElementById("age").value;
+            if (age == "" || nombre.test(age) == false || (age > 140 && age < 5)) {
+                let ph = document.createElement("Button");
+                let texte = document.createTextNode("L'Âge doit être compris entre 5 et 140");
+                ph.appendChild(texte);
+                if (document.getElementById("td_age").childNodes.length == 3)
+                    document.getElementById("td_age").appendChild(ph);
+                valide = false;
+            }
+            if (document.getElementById("pseudo").value.length < 4) {
+                let ph = document.createElement("Button");
+                let texte = document.createTextNode("Le pseudo ne peut pas faire moins de 4 caractères");
+                ph.appendChild(texte);
+                if (document.getElementById("td_pseudo").childNodes.length == 3)
+                    document.getElementById("td_pseudo").appendChild(ph);
+                valide = false;
+            }
+            if (document.getElementById("motpasse1").value.length < 6) {
+                let ph = document.createElement("Button");
+                let texte = document.createTextNode("Le mot de passe ne peut pas faire moins de 6 caractères");
+                ph.appendChild(texte);
+                if (document.getElementById("td_motpasse1").childNodes.length == 3)
+                    document.getElementById("td_motpasse1").appendChild(ph);
+                valide = false;
+            }
+            if (document.getElementById("motpasse1").value != document.getElementById("motpasse2").value || document.getElementById("motpasse2").value.length < 6) {
+                let ph = document.createElement("Button");
+                let texte = document.createTextNode("Le mot de passe de confirmation doit être identique à celui d'origine");
+                ph.appendChild(texte);
+                if (document.getElementById("td_motpasse2").childNodes.length == 3)
+                    document.getElementById("td_motpasse2").appendChild(ph);
+                valide = false;
+            }
+            if (document.getElementById("pays").value == document.getElementById("vide").value) {
+                let ph = document.createElement("Button");
+                if (document.getElementById("td_pays").childNodes.length == 3) {
+                    let texte = document.createTextNode("Vous devez sélectionner votre pays d résidence");
+                    ph.appendChild(texte);
+                    document.getElementById("td_pays").appendChild(ph);
+                }
+                valide = false;
+            }
+            return valide
+
+
+        }
+
+    </script>
+
+
+    <table id="Table">
+        <form id="Form1">
+            <tr>
+                <td>Genre :</td>
+                <td id="td_genre">
+                    <label for="homme">Homme</label><input type="radio" name="sexe" id="homme" value="H">
+                    <label for="femme">Femme</label><input type="radio" name="sexe" id="femme" value="F">
+                </td>
+            </tr>
+            <tr>
+                <td>Nom :</td>
+                <td id="td_nom">
+                    <input type="text" id="nom">
+                </td>
+            </tr>
+            <tr>
+                <td>Prénom :</td>
+                <td id="td_prenom">
+                    <input type="text" id="prenom">
+                </td>
+            </tr>
+            <tr>
+                <td>Âge :</td>
+                <td id="td_age">
+                    <input type="text" id="age">
+                </td>
+            </tr>
+            <tr>
+                <td>Pseudo :</td>
+                <td id="td_pseudo">
+                    <input type="text" id="pseudo">
+                </td>
+            </tr>
+            <tr>
+                <td>Mot de passe :</td>
+                <td id="td_motpasse1">
+                    <input type="password" id="motpasse1">
+                </td>
+            </tr>
+            <tr>
+                <td>Mot de passe (confirmation) :</td>
+                <td id="td_motpasse2">
+                    <input type="password" id="motpasse2">
+                </td>
+            </tr>
+            <tr>
+                <td>Pays :</td>
+                <td id="td_pays">
+                    <select id="pays">
+                        <option id="vide">Sélection votre pays de résidance</option>
+                        <option id="Maroc">Maroc</option>
+                        <option id="France">France</option>
+                        <option id="Germany">Germany</option>
+                        <option id="Brazil">Brazil</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="checkbox" id="checkbox""> <label>Je désire recevoir le newsletter chaque mois</label>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" value="M'inscrire" onclick="inscrire()">
+                    <input type="button" value="Réinitialiser le formulaire" onclick="verifier_click()">
+                </td>
+            </tr>
+        </form>
+    </table>
+
+</body>
+
+</html>

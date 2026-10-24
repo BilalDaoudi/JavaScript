@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+    <style>
+        * {
+            margin: 0px;
+        }
+
+        body {
+            background-image: url("Calculatrice2.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        i {
+            font-size: xx-large;
+            padding-left: 40px;
+        }
+
+        .texte {
+            background-color: rgb(9, 9, 105);
+            color: aliceblue;
+            margin-left: 300px;
+            width: 250px;
+            height: 40px;
+
+        }
+
+        h1 {
+            color: brown;
+            margin-left: 490px;
+            margin-top: 20px;
+        }
+
+        .Calculatrice {
+            background-color: blueviolet;
+            margin-left: 300px;
+            width: 250px;
+        }
+
+        input {
+            width: 240px;
+            height: 25px;
+            position: relative;
+            right: 28px;
+        }
+
+        .tout {
+            margin-left: 200px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var Calcul = 0;
+        var T_NbOpe = [];
+        var mot = /^[0-9]+[\.]{1}[0-9]+$/
+        var testNB = /^[0-9]+$/
+        function bnt0_Click() { document.getElementById("cal").value += 0; }
+        function bnt1_Click() { document.getElementById("cal").value += 1; }
+        function bnt2_Click() { document.getElementById("cal").value += 2; }
+        function bnt3_Click() { document.getElementById("cal").value += 3; }
+        function bnt4_Click() { document.getElementById("cal").value += 4; }
+        function bnt5_Click() { document.getElementById("cal").value += 5; }
+        function bnt6_Click() { document.getElementById("cal").value += 6; }
+        function bnt7_Click() { document.getElementById("cal").value += 7; }
+        function bnt8_Click() { document.getElementById("cal").value += 8; }
+        function bnt9_Click() { document.getElementById("cal").value += 9; }
+        function bntPoint_Click() {
+            let ch = document.getElementById("cal").value;
+            let existe = false;
+            for (let i = 0; i < ch.length; i++) {
+                if (ch[i] == ".")
+                    existe = true;
+            }
+            if (existe == false)
+                document.getElementById("cal").value += ".";
+        }
+
+        function bntPlus_Click() {
+            if (T_NbOpe.length != 0) {
+                if (T_NbOpe[T_NbOpe.length - 1] == "+") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        Calcul += nb;
+                        T_NbOpe.push("+");
+                        document.getElementById("cal").value = "";
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        Calcul += nb;
+                        T_NbOpe.push("+");
+                        document.getElementById("cal").value = "";
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+
+                if (T_NbOpe[T_NbOpe.length - 1] == "/") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul /= nb }
+                        T_NbOpe.push("+");
+                        document.getElementById("cal").value = "";
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul /= nb }
+                        T_NbOpe.push("+");
+                        document.getElementById("cal").value = "";
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "*") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul *= nb }
+                        T_NbOpe.push("+");
+                        document.getElementById("cal").value = "";
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul *= nb }
+                        T_NbOpe.push("+");
+                        document.getElementById("cal").value = "";
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "-") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul -= nb; };
+                        T_NbOpe.push("+");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul -= nb; };
+                        T_NbOpe.push("+");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+            }
+            else {
+                nb = parseFloat(document.getElementById("cal").value)
+                Calcul += nb;
+                T_NbOpe.push("+");
+                document.getElementById("cal").value = "";
+            }
+        }
+        function bntMois_Click() {
+            if (T_NbOpe.length != 0) {
+                if (T_NbOpe[T_NbOpe.length - 1] == "-") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul -= nb; };
+                        T_NbOpe.push("-");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul -= nb; };
+                        T_NbOpe.push("-");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "+") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        Calcul += nb;
+                        T_NbOpe.push("-");
+                        document.getElementById("cal").value = "";
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        Calcul += nb;
+                        T_NbOpe.push("-");
+                        document.getElementById("cal").value = "";
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+
+                if (T_NbOpe[T_NbOpe.length - 1] == "/") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul /= nb }
+                        T_NbOpe.push("-");
+                        document.getElementById("cal").value = "";
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul /= nb }
+                        T_NbOpe.push("-");
+                        document.getElementById("cal").value = "";
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "*") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul *= nb }
+                        T_NbOpe.push("-");
+                        document.getElementById("cal").value = "";
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul *= nb }
+                        T_NbOpe.push("-");
+                        document.getElementById("cal").value = "";
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+
+            }
+            else {
+                nb = parseFloat(document.getElementById("cal").value)
+                Calcul += nb;
+                T_NbOpe.push("-");
+                document.getElementById("cal").value = "";
+            }
+        }
+
+        function bntDivi_Click() {
+            if (T_NbOpe.length != 0) {
+                if (T_NbOpe[T_NbOpe.length - 1] == "/") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul /= nb; };
+                        T_NbOpe.push("/");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul /= nb; };
+                        T_NbOpe.push("/");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "-") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul -= nb; };
+                        T_NbOpe.push("/");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul -= nb; };
+                        T_NbOpe.push("/");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "+") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        Calcul += nb;
+                        T_NbOpe.push("/");
+                        document.getElementById("cal").value = "";
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        Calcul += nb;
+                        T_NbOpe.push("/");
+                        document.getElementById("cal").value = "";
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+
+
+                if (T_NbOpe[T_NbOpe.length - 1] == "*") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul *= nb }
+                        T_NbOpe.push("/");
+                        document.getElementById("cal").value = "";
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul *= nb }
+                        T_NbOpe.push("/");
+                        document.getElementById("cal").value = "";
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+            }
+            else {
+                nb = parseFloat(document.getElementById("cal").value)
+                Calcul += nb;
+                T_NbOpe.push("/");
+                document.getElementById("cal").value = "";
+            }
+        }
+        function bntProd_Click() {
+            if (T_NbOpe.length != 0) {
+                if (T_NbOpe[T_NbOpe.length - 1] == "*") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul *= nb }
+                        T_NbOpe.push("*");
+                        document.getElementById("cal").value = "";
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul *= nb }
+                        T_NbOpe.push("*");
+                        document.getElementById("cal").value = "";
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+
+                if (T_NbOpe[T_NbOpe.length - 1] == "/") {
+
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul /= nb; };
+                        T_NbOpe.push("*");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul /= nb; };
+                        T_NbOpe.push("*");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "-") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul -= nb; };
+                        T_NbOpe.push("*");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul -= nb; };
+                        T_NbOpe.push("*");
+                        document.getElementById("cal").value = "";
+
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "+") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        Calcul += nb;
+                        T_NbOpe.push("*");
+                        document.getElementById("cal").value = "";
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        Calcul += nb;
+                        T_NbOpe.push("*");
+                        document.getElementById("cal").value = "";
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+            }
+            else {
+                nb = parseFloat(document.getElementById("cal").value)
+                Calcul += nb;
+                T_NbOpe.push("*");
+                document.getElementById("cal").value = "";
+            }
+        }
+        function bntVider_Click() {
+            document.getElementById("cal").value = "";
+            Calcul = 0;
+            T_NbOpe = [];
+        }
+        function bntEgale_Click() {
+            if (T_NbOpe.length != 0) {
+                if (T_NbOpe[T_NbOpe.length - 1] == "+") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        Calcul += nb
+                        document.getElementById("cal").value = Calcul;
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        Calcul += nb;
+                        document.getElementById("cal").value = Calcul;
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "-") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul -= nb; }
+                        document.getElementById("cal").value = Calcul;
+
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul -= nb; }
+                        document.getElementById("cal").value = Calcul;
+
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "/") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul /= nb }
+                        document.getElementById("cal").value = Calcul;
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul /= nb }
+                        document.getElementById("cal").value = Calcul;
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+                if (T_NbOpe[T_NbOpe.length - 1] == "*") {
+                    let texte = document.getElementById("cal").value;
+                    if (testNB.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul *= nb }
+                        document.getElementById("cal").value = Calcul;
+                    }
+                    if (mot.test(texte) == true) {
+                        nb = parseFloat(document.getElementById("cal").value)
+                        if (Calcul == 0) { Calcul += nb; }
+                        else { Calcul *= nb }
+                        document.getElementById("cal").value = Calcul;
+                    }
+                    if ((mot.test(texte) == false) && (testNB.test(texte) == false)) {
+                        alert("Mauvaise Saisir Dans " + texte)
+                    }
+                }
+                Calcul = 0;
+            }
+            else {
+                let test = document.getElementById("cal").value;
+                if (test == "") { document.getElementById("cal").value = 0; }
+                else { ocument.getElementById("cal").value = test; }
+            }
+        }
+    </script>
+    <h1>Welcome to Calcule</h1>
+    <div class="tout">
+        <div class="texte"><i>Calculatrice</i></div>
+        <div class="Calculatrice">
+            <pre>
+    <input type="text" id="cal" disabled >
+
+    <button onclick="bnt7_Click()"><b> 7 </b></button>  <button onclick="bnt8_Click()"> <b>8 </b></button>  <button onclick="bnt9_Click()"> <b>9 </b></button>  <button onclick="bntPlus_Click()"> <b>+ </b></button>  <button onclick="bntVider_Click()"><b>C</b></button>
+
+    <button onclick="bnt4_Click()"><b> 4 </b></button>  <button onclick="bnt5_Click()"><b> 5 </b></button>  <button onclick="bnt6_Click()"><b> 6 </b></button>  <button onclick="bntMois_Click()"> <b> - </b></button>
+
+    <button onclick="bnt1_Click()"><b> 1 </b></button>  <button onclick="bnt2_Click()"> <b>2 </b></button>  <button onclick="bnt3_Click()"> <b>3 </b></button>  <button onclick="bntProd_Click()"><b> x </b></button>
+
+    <button onclick="bnt0_Click()"><b> 0 </b></button>  <button onclick="bntPoint_Click()"> <b>. </b> </button>  <button onclick="bntEgale_Click()"> <b>= </b></button>  <button onclick="bntDivi_Click()"> <b> / </b></button>
+    </pre>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+    <script>
+
+        function Vider() {
+            document.getElementById("nom").value = "";
+            document.getElementById("prenom").value = "";
+            document.getElementById("initiale").checked = false;
+            document.getElementById("continue").checked = false;
+            document.getElementById("cursus").value = document.getElementById("choisir").value;
+            document.getElementById("commentaires").value = "";
+        }
+        function Envoyer() {
+            var Existe = true;
+            var texte = "Mauvaise Saisir :\n"
+            if (document.getElementById("nom").value == "") {
+                Existe = false;
+                texte += "- Donner Le Nom \n"
+            }
+            if (document.getElementById("prenom").value == "") {
+                Existe = false;
+                texte += "- Donner Le Prénom \n"
+            }
+            if (document.getElementById("initiale").checked == false && document.getElementById("continue").checked == false) {
+                Existe = false;
+                texte += "- Choisir Formation \n"
+            }
+            if (document.getElementById("cursus").value == document.getElementById("choisir").value) {
+                Existe = false;
+                texte += "- Choisir Cursus \n"
+            }
+            if (document.getElementById("commentaires").value == "") {
+                Existe = false;
+                texte += "- Donner Le Commentaires \n"
+            }
+
+            if (Existe == true) {
+                alert("Les Informations est Correct ☻☻☻")
+
+                table = document.getElementById("TABLE");
+                Tr = document.createElement("tr");
+
+                tdnom = document.createElement("td");
+                nom = document.createTextNode(document.getElementById("nom").value)
+                tdnom.appendChild(nom);
+                Tr.appendChild(tdnom);
+
+                tdprenom = document.createElement("td");
+                prenom = document.createTextNode(document.getElementById("prenom").value)
+                tdprenom.appendChild(prenom);
+                Tr.appendChild(tdprenom);
+
+                tdformation = document.createElement("td");
+                if (document.getElementById("initiale").checked == true){
+                    formation = document.createTextNode("Initiale");
+                }
+                if (document.getElementById("continue").checked == true){
+                    formation = document.createTextNode("Continue");
+                }
+                tdformation.appendChild(formation);
+                Tr.appendChild(tdformation);
+
+                tdcorsus = document.createElement("td");
+                corsus = document.createTextNode(document.getElementById("cursus").value)
+                tdcorsus.appendChild(corsus);
+                Tr.appendChild(tdcorsus);
+
+                tdcommen = document.createElement("td");
+                commentaires = document.createTextNode(document.getElementById("commentaires").value)
+                tdcommen.appendChild(commentaires);
+                Tr.appendChild(tdcommen);
+
+                table.appendChild(Tr);
+
+            }
+            if (Existe == false) {
+                alert(texte)
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Bienvenue dans votre Site</h1>
+    <p>Enregitrement d'un étudiant</p>
+    <form>
+        <table id="Table1">
+            <tr>
+                <td><label for="nom">Nom</label></td>
+                <td><input type="text" id="nom"></td>
+            </tr>
+            <tr>
+                <td><label for="prenom">Prénom</label></td>
+                <td><input type="text" id="prenom"></td>
+            </tr>
+            <tr>
+                <td><label>Formation</label></td>
+                <td>
+                    <label for="initiale">Initiale :</label>
+                    <input type="radio" id="initiale" name="formation">
+                    <label for="continue">Continue :</label>
+                    <input type="radio" id="continue" name="formation">
+                </td>
+            </tr>
+            <tr>
+                <td>Cursus</td>
+                <td>
+                    <select id="cursus">
+                        <option id="choisir">Choisir Cursus</option>
+                        <option id="informatique">Informatique</option>
+                        <option id="mathematique">Mathématique</option>
+                        <option id="mecanique">Mécanique</option>
+                        <option id="biologique">Biologique</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Commentaires</td>
+                <td>
+                    <textarea id="commentaires" cols="30" rows="3" placeholder="Tapez ici vos commentaires"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th><br><input type="button" value="Envoyer" onclick="Envoyer()"></th>
+                <th><br><input type="button" value="Effacer" onclick="Vider()"></th>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <br>
+    <br>
+    <table border="1" id="TABLE"></table>
+
+</body>
+
+</html>

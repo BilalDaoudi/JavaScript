@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joué Sudoko</title>
+    <style>
+        * {
+            margin: 10px;
+        }
+
+        body {
+            background-image: url("Foto/Background.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .haut {
+            margin-left: 450px;
+        }
+
+        .rd {
+            padding-left: 160px;
+        }
+
+        #nom {
+            margin-left: 460px;
+            width: 440px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        #nouvelle {
+            background-color: rgb(115, 125, 240);
+            width: 150px;
+            height: 35px;
+            margin-left: 600px;
+            border-radius: 50px;
+            
+        }
+
+        .btnjoue {
+            width: 200px;
+            height: 40px;
+            border-radius: 45px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            background: #000;
+            color: #fff;
+            border: 1px solid;
+            transition: all 1s ease;
+            border: 4px solid lightblue;
+            transition-delay: 0.2s;
+            cursor: pointer;
+        }
+
+        button:hover {
+            box-shadow: 0 0 20px #a8eb12, 0 0 40px #00E4B6;
+            border: 4px solid #a8eb12;
+            background: #a8eb12;
+            color: #000;
+            transition: box-shadow 7s, border 3s, background 3s, color 3s;
+        }
+
+        .partietype {
+            display: flex;
+            margin-left: 320px;
+        }
+        a{
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+    <script>
+        function Joue() {
+            let rdoui = document.getElementById("oui").checked;
+            let rdnon = document.getElementById("non").checked;
+            let nom = document.getElementById("nom").value;
+            if ((rdoui == true || rdnon == true) && nom != "") {
+                let divEasy = document.getElementById("easy");
+                let button1 = document.createElement("button");
+                button1.setAttribute("class", "btnjoue");
+                //let texte1 = document.createTextNode("Easy");
+                //button1.appendChild(texte1)7
+                let lien1 = document.createElement("a");
+                lien1.setAttribute("href","Sudoku_Ep1.html");
+                let texte1 = document.createTextNode("Easy");
+                lien1.appendChild(texte1)
+                button1.appendChild(lien1)
+                if (divEasy.childNodes.length == 0) {
+                    divEasy.appendChild(button1)
+                }
+
+                let divMedium = document.getElementById("medium");
+                let button2 = document.createElement("button");
+                button2.setAttribute("class", "btnjoue");
+                //let texte2 = document.createTextNode("Medium");
+                //button2.appendChild(texte2)
+                let lien2 = document.createElement("a");
+                lien2.setAttribute("href","Sudoku_Ep2.html");
+                let texte2 = document.createTextNode("Medium");
+                lien2.appendChild(texte2)
+                button2.appendChild(lien2)
+                if (divMedium.childNodes.length == 0) {
+                    divMedium.appendChild(button2)
+                }
+
+                let divHard = document.getElementById("hard");
+                let button3 = document.createElement("button");
+                button3.setAttribute("class", "btnjoue");
+                //let texte3 = document.createTextNode("Hard");
+                //button3.appendChild(texte3)
+                let lien3 = document.createElement("a");
+                lien3.setAttribute("href","Sudoku_Ep3.html");
+                let texte3 = document.createTextNode("Hard");
+                lien3.appendChild(texte3)
+                button3.appendChild(lien3)
+                if (divHard.childNodes.length == 0) {
+                    divHard.appendChild(button3)
+                }
+            }
+            else {
+                let ch = "";
+                if (rdoui == false && rdnon == false) {
+                    ch += "Coché Oui ou Non \n";
+                }
+                if (nom == "") {
+                    ch += "Donner Votre Nom";
+                }
+                alert(ch);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="haut">
+        <h1>Hi, est ce que déjà jouer Sudoku</h1>
+        <div class="rd">
+            <input type="radio" name="joue" id="oui"> OUI
+            <br>
+            <input type="radio" name="joue" id="non"> NON
+        </div>
+    </div>
+    <input type="text" id="nom" placeholder="    Entre Votre Nom">
+    <br>
+    <br>
+    <button id="nouvelle" onclick="Joue()">Nouvelle partie</button>
+    <div class="partietype">
+        <div id="easy"></div>
+        <div id="medium"></div>
+        <div id="hard"></div>
+    </div>
+</body>
+
+</html>

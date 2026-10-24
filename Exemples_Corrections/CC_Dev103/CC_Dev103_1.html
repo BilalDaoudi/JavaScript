@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exe1</title>
+</head>
+<body>
+    <script>
+         var div1=document.createElement('div');
+         div1.setAttribute("id","divTP3");
+         var p1=document.createElement('p');
+         var texte1=document.createTextNode("Langages basés sur ECMAscript");
+         p1.appendChild(texte1);
+         div1.appendChild(p1);
+
+         var DL=document.createElement('dl');
+
+         var DT1=document.createElement('dt');
+         var texte2=document.createTextNode("Javascript");
+         DT1.appendChild(texte2)
+         var DD1=document.createElement('dd');
+         var texte3=document.createTextNode("Javascript est un langage de programmation de scripts ...........");
+         DD1.appendChild(texte3);
+         DT1.appendChild(DD1);
+
+         DL.appendChild(DT1);
+         
+
+         var DT2=document.createElement('dt');
+         var texte4=document.createTextNode("JScript");
+         DT2.appendChild(texte4)
+         var DD2=document.createElement('dd');
+         var texte5=document.createTextNode("JScript est  le nom générique de plusieurs.............");
+         DD2.appendChild(texte5);
+         DT2.appendChild(DD2);
+
+         
+         DL.appendChild(DT2);
+         
+
+         var DT3=document.createElement('dt');
+         var texte6=document.createTextNode("ActionScript");
+         DT3.appendChild(texte6)
+         var DD3=document.createElement('dd');
+         var texte7=document.createTextNode("ActionScript est un langage de programmation utilisé .............");
+         DD3.appendChild(texte7);
+         DT3.appendChild(DD3);
+         DL.appendChild(DT3);
+         
+         
+
+         var DT4=document.createElement('dt');
+         var texte8=document.createTextNode("EXE4");
+         DT4.appendChild(texte8)
+         var DD4=document.createElement('dd');
+         var texte9=document.createTextNode("ECMAScript for XML (E4X) est une extension .............");
+         DD4.appendChild(texte9);
+         DT4.appendChild(DD4);
+
+         DL.appendChild(DT4);
+         div1.appendChild(DL);
+
+         document.body.append(div1);
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

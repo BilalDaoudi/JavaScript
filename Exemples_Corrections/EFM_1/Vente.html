@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vente</title>
+    <style>
+        fieldset {
+            border: solid;
+        }
+
+        #add {
+            color: aliceblue;
+            height: 30px;
+            background-color: brown;
+        }
+
+        button {
+            color: aliceblue;
+            height: 30px;
+            background-color: brown;
+        }
+
+        #Total {
+            width: 100%;
+        }
+    </style>
+
+    <script>
+        var Consoles = [
+            { "ref": "NINTENDO SWITCH OLED", "prix": 4500, "manettes": 2, "image": "Foto/nintendo.jpg" },
+            { "ref": "PLAYSTATION CONSOLE PS5", "prix": 8500, "manettes": 1, "image": "Foto/ps5.jpg" },
+            { "ref": "XBOX SERIES 512G", "prix": 4600, "manettes": 2, "image": "Foto/xbox.jpg" },
+            { "ref": "PLAYSTATION PS4 1TO PRO", "prix": 5300, "manettes": 1, "image": "Foto/ps4.jpg" }
+        ]
+
+        let i = 0;
+        function Remplir_Select() {
+            while (i < Consoles.length) {
+                let op = document.createElement("option");
+                let txt = document.createTextNode(Consoles[i].ref)
+                op.appendChild(txt);
+                document.getElementById("console").appendChild(op)
+                i++;
+            }
+        }
+        document.onmouseover = Remplir_Select;
+
+        var j = 0;
+        function Ajouter_Console() {
+            let idtr = "tr" + j;
+            let table = document.getElementById("T_Console");
+            let tr = document.createElement("tr");
+            tr.setAttribute("id", idtr);
+            let reference = document.getElementById("console").value;
+            let qt = document.getElementById("quantite").value;
+
+            let refs = document.getElementsByClassName("ref");
+
+            if (refs.length != 0) {
+                let qts = document.getElementsByClassName("qt");
+                let existe = false;
+                for (y = 0; y < refs.length; y++) {
+                    if (reference == refs[y].textContent) {
+                        existe = true;
+                        let q = parseInt(qt) + parseInt(qts[y].textContent)
+                        qts[y].textContent = q;
+                        Total();
+                    }
+                }
+
+
+                if (existe == false) {
+                    if (reference != 'Choisir un Console') {
+                        if (qt >= 1 && qt <= 20) {
+                            let img = "#";
+                            for (k = 0; k < Consoles.length; k++) {
+                                if (Consoles[k].ref == reference) {
+                                    img = Consoles[k].image;
+                                }
+                            }
+                            let td1 = document.createElement("td");
+                            td1.setAttribute("class", "ref");
+                            let txt1 = document.createTextNode(reference);
+                            td1.appendChild(txt1);
+
+                            let th2 = document.createElement("th");
+                            th2.setAttribute("class", "qt");
+                            let txt2 = document.createTextNode(qt);
+                            th2.appendChild(txt2);
+
+                            let th3 = document.createElement("th");
+                            let foto = document.createElement("img");
+                            foto.setAttribute("src", img);
+                            foto.setAttribute("width", "100px");
+                            foto.setAttribute("height", "100px");
+                            th3.appendChild(foto);
+
+                            let th4 = document.createElement("th");
+                            let btn = document.createElement("button");
+                            let txt4 = document.createTextNode("Supprimer");
+                            btn.addEventListener("click", function Supprimer() {
+                                document.getElementById(idtr).remove();
+                                Total();
+                            })
+                            btn.appendChild(txt4);
+                            th4.appendChild(btn);
+                            tr.appendChild(td1);
+                            tr.appendChild(th2);
+                            tr.appendChild(th3);
+                            tr.appendChild(th4);
+                            table.appendChild(tr);
+                            Total();
+                        }
+                        else { alert("Quantité entre 1 et 20 !!!!!"); }
+                    }
+                    else { alert("Mauvaise Choix !!!!!"); }
+
+                }
+            }
+            else {
+                if (reference != 'Choisir un Console') {
+                    if (qt >= 1 && qt <= 20) {
+                        let img = "#"
+                        for (k = 0; k < Consoles.length; k++) {
+                            if (Consoles[k].ref == reference) {
+                                img = Consoles[k].image;
+                            }
+                        }
+                        let td1 = document.createElement("td");
+                        td1.setAttribute("class", "ref");
+                        let txt1 = document.createTextNode(reference);
+                        td1.appendChild(txt1);
+                        let th2 = document.createElement("th");
+                        th2.setAttribute("class", "qt");
+                        let txt2 = document.createTextNode(qt);
+                        th2.appendChild(txt2);
+                        let th3 = document.createElement("th");
+                        let foto = document.createElement("img");
+                        foto.setAttribute("src", img);
+                        foto.setAttribute("width", "100px");
+                        foto.setAttribute("height", "100px");
+                        th3.appendChild(foto);
+                        let th4 = document.createElement("th");
+                        let btn = document.createElement("button");
+                        let txt4 = document.createTextNode("Supprimer");
+                        btn.addEventListener("click", function Supprimer() {
+                            document.getElementById(idtr).remove();
+                            Total();
+                        })
+                        btn.appendChild(txt4);
+                        th4.appendChild(btn);
+
+                        tr.appendChild(td1);
+                        tr.appendChild(th2);
+                        tr.appendChild(th3);
+                        tr.appendChild(th4);
+
+                        table.appendChild(tr);
+
+                        Total();
+                    }
+                    else { alert("Quantité entre 1 et 20 !!!!!"); }
+                }
+                else { alert("Mauvaise Choix !!!!!"); }
+
+            }
+        }
+        function Total() {
+            let refs = document.getElementsByClassName("ref");
+            let qts = document.getElementsByClassName("qt");
+            let total = 0.0;
+            for (k = 0; k < refs.length; k++) {
+                for (y = 0; y < Consoles.length; y++) {
+                    if (Consoles[y].ref == refs[k].textContent) {
+                        total += (parseFloat(Consoles[y].prix) * parseInt(qts[k].textContent))
+                    }
+                }
+            }
+            document.getElementById("totalht").innerHTML = total + " DHS";
+            let totalttc = total + total * 0.2
+            document.getElementById("totalttc").innerHTML = totalttc + " DHS";
+        }
+
+
+        function Commande() {
+            let refs = document.getElementsByClassName("ref");
+            let qts = document.getElementsByClassName("qt");
+            var T_Commande = []
+            for (k = 0; k < refs.length; k++) {
+                let ref = refs[k].textContent;
+                let qt = qts[k].textContent;
+                let obj = { "ref": ref , "qt": qt }
+                T_Commande.push(obj);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="commande">
+        <fieldset>
+            <h2>Commander des Consoles</h2>
+            <form>
+                <label for="console"><b> Console : </b></label>
+                <br>
+                <select id="console">
+                    <option>Choisir un Console</option>
+                </select>
+                <br>
+                <br>
+                <label for="quantite"><b> Quantité : </b></label>
+                <br>
+                <input type="number" name="quantite" id="quantite" min="1" max="20">
+                <br>
+                <br>
+                <input type="button" id="add" value="Ajouter au panier" onclick="Ajouter_Console()">
+            </form>
+            <h2>Panier de commandes</h2>
+            <table id="T_Console" width="100%">
+                <tr>
+                    <th>REFERENCE</th>
+                    <th>QUANTITE</th>
+                    <th>IMAGE</th>
+                    <th>ACTION</th>
+                </tr>
+            </table>
+            <br><br><br>
+            <table id="Total">
+                <tr>
+                    <td>Total HT</td>
+                    <td id="totalht">0 DHS</td>
+                </tr>
+
+                <tr>
+                    <td>Total TTC</td>
+                    <td id="totalttc">0 DHS</td>
+                </tr>
+            </table>
+            <br>
+            <button onclick="Commande()">Commander</button>
+        </fieldset>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tbl td {
+            text-align: center;
+
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function Validation() {
+            let id = document.getElementById("id").value;
+            let titre = document.getElementById("titre").value;
+            let r1 = document.getElementById("r1").checked;
+            let r2 = document.getElementById("r2").checked;
+            let r3 = document.getElementById("r3").checked;
+            if (id != "" && titre != "") {
+                if (r1 != false || r2 != false || r3 != false)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+
+        }
+        function Ajouter() {
+            let val = Validation();
+            if (val == true) {
+                let id = document.getElementById("id").value;
+                let titre = document.getElementById("titre").value;
+                let priorite = "";
+                let r1 = document.getElementById("r1").checked;
+                let r2 = document.getElementById("r2").checked;
+                let r3 = document.getElementById("r3").checked;
+                if (r1 == true)
+                    priorite = "Urgent";
+                if (r2 == true)
+                    priorite = "Normale";
+                if (r3 == true)
+                    priorite = "Faible";
+
+                let tbl = document.getElementById("tbl");
+
+                let tr = document.createElement('tr');
+
+                let td1 = document.createElement('td');
+                td1.setAttribute("class", "b1")
+                td1.textContent = id;
+
+                let td2 = document.createElement('td');
+                td2.setAttribute("class", "b2")
+                td2.textContent = titre;
+
+                let td3 = document.createElement('td');
+                td3.setAttribute("class", "b3")
+                td3.textContent = priorite;
+
+                if (r1 == true){
+                    td1.setAttribute("style","color:red");
+                    td2.setAttribute("style","color:red");
+                    td3.setAttribute("style","color:red");}
+                if (r2 == true){
+                    td1.setAttribute("style","color:gold");
+                    td2.setAttribute("style","color:gold");
+                    td3.setAttribute("style","color:gold");}
+
+                let td4 = document.createElement('td');
+                let btn = document.createElement('button');
+                btn.addEventListener('click', function () {
+                    td1.setAttribute("style", " text-decoration: line-through;")
+                    td2.setAttribute("style", " text-decoration: line-through;")
+                    td3.setAttribute("style", " text-decoration: line-through;")
+                    this.disabled = true;
+                    let nbtermine = parseInt(document.getElementById("nbtermine").textContent) + 1
+                    document.getElementById("nbtermine").innerHTML = nbtermine;
+
+                })
+                btn.textContent = "Terminer";
+                td4.appendChild(btn);
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+
+                tbl.appendChild(tr);
+
+
+                // incrementé nb total de tâche
+                let nbtotal = parseInt(document.getElementById("nbtotal").textContent) + 1
+                document.getElementById("nbtotal").innerHTML = nbtotal;
+
+            }
+        }
+        function Lire() {
+            let id = document.getElementById("id").value;
+            if (id != "") {
+                let T_Id = document.getElementsByClassName("b1");
+                let T_titre = document.getElementsByClassName("b2");
+                let T_prio = document.getElementsByClassName("b3");
+                if (T_Id.length != 0) {
+                    for (let i = 0; i < T_Id.length; i++) {
+                        if (T_Id[i].textContent == id) {
+                            document.getElementById("titre").value = T_titre[i].textContent;
+                            if (T_prio[i].textContent == "Urgent")
+                                document.getElementById("r1").checked = true
+                            if (T_prio[i].textContent == "Normale")
+                                document.getElementById("r2").checked = true
+                            if (T_prio[i].textContent == "Faible")
+                                document.getElementById("r3").checked = true
+                        }
+                    }
+                }
+                
+
+            }
+        }
+
+
+
+
+
+
+    </script>
+
+    <fieldset>
+        <h1>Mes tâches</h1>
+
+        <fieldset>
+            <legend>Nouvelle Tâche :</legend>
+            <table>
+                <tr>
+                    <td>ID :</td>
+                    <td><input type="text" id="id"> <input type="button" value="Lire" onclick="Lire()"></td>
+                </tr>
+                <tr>
+                    <td>Titre :</td>
+                    <td><input type="text" id="titre"></td>
+                </tr>
+                <tr>
+                    <td>Priorité :</td>
+                    <td>
+                        <input type="radio" name="pr" value="urgent" id="r1"> Urgent
+                        <input type="radio" name="pr" value="normale" id="r2"> Normale
+                        <input type="radio" name="pr" value="faible" id="r3"> Faible
+                    </td>
+                </tr>
+            </table>
+
+            <button onclick="Ajouter()">Ajouter la tâche</button>
+
+        </fieldset>
+        <h1>Liste des tâches</h1>
+        <p>Nombre des tâche terminées : <span id="nbtermine">0</span> sur <span id="nbtotal">0</span></p>
+        <table id="tbl" width="100%" border="1">
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Prioté</th>
+                <th>Action</th>
+            </tr>
+
+        </table>
+
+    </fieldset>
+
+</body>
+
+</html>
