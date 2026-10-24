@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery</title>
+    <script src="C:/Programmation/jQuery/jquery-3.6.0.js"></script>
+    <script>
+
+
+
+        $(document).ready(function () {
+            $("#img2").hide();
+        });
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                $("#img1").hide(1000);
+                $("#img2").show(1000);  
+               
+
+            });
+        });
+
+        $(document).ready(function () {
+            $("#btn2").click(function () {
+                $("#img1").stop();
+                $("#img2").stop();
+
+            });
+        });
+
+
+
+
+
+        /*
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                for (i = 0; i < 10; i++) {
+                    
+                        $("#img1").hide(1000);
+                        $("#img2").show(1000);
+                        $("#img2").hide(1000);
+                        $("#img1").show(1000);
+                    
+
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#btn2").click(function () {
+                $("#img1").stop();
+                $("#img2").stop();
+                
+            });
+        });
+        */
+
+
+    </script>
+</head>
+
+<body>
+    <button id="btn1">Start</button>
+    <button id="btn2">Stop</button>
+    <center>
+        <img src="C:/Users/Bilal/Pictures/Photo/daoudi.jfif" id="img1">
+        <img src="C:/Users/Bilal/Pictures/Photo/bilal.webp" id="img2">
+    </center>
+
+
+
+
+</body>
+
+</html>

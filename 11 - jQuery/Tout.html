@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../jQuery/jquery-3.6.0.js"></script>
+    <title>jQuery</title>
+    <script>
+        $(document).ready(function () {         
+
+            
+
+            /*
+            // Animate 
+            $("#animate").click(function (){
+                $("fieldset").animate(
+                    {
+                        opacity : "0.5",
+                        width : "20px",
+                    },3000
+                );
+            })
+
+            // slide et stop
+            $("#slide").click(function (){
+                $("fieldset").slideToggle(5000);
+            })
+            $("#stop").click(function (){
+                $("fieldset").stop();
+            })
+
+            // Parent et Child --------------------------
+            // premier parent
+            $("#n").parent().css("background","green");
+            // tout le parents
+            $("#n").parents().css("background","green");
+            // tout child
+            $("div").children().css("background","green");
+            // find un palise child 
+            $("div").find("p").css("background","green");
+            // find tout child 
+            $("div").find("*").css("background","green");
+
+            // ------ les Class et CSS----------------
+            $("div").addClass("tt");
+            // ajouter un seul proprety
+            $(".tt").css("background","green");
+            // ajouter plusieur proprety
+            $(".tt").css({"background":"green" ,"color":"gold","width":"250px"});
+
+            // Add
+            $("#age").append("<b>19</b>")
+            $("div").prepend("<b>Hello</b>")
+            $("#age").after("Filiere : ")
+            $("#n").before("<h1>Saisir</h1>")
+
+            $("#btn").click(function () {
+                let pr = $("#pr").val()
+                $("#nom").html($("#nom").html() + $("#n").val())
+                $("#prenom").text($("#prenom").text() + pr)
+                $("#age").html($("#age").html() + $("#ag").val())
+            })
+            $("#vider").click(function () {
+                $("#nom").html("Nom : ")
+                $("#prenom").text("Prénom : ")
+                $("#age").html("Age : ")
+            })
+            $("legend").click(function () {
+                $(".tt").toggle(5000);
+            })
+
+            //Delete
+            $("#age").empty()
+            $("#ag").remove()
+
+
+            */
+
+        })
+    </script>
+</head>
+
+<body>
+    <button id="slide">slide</button><button id="stop">stop</button><button id="animate">animate</button>
+    <fieldset>
+        <legend>Information</legend>
+        <div class="tt">
+
+
+            <p id="nom">Nom : </p>
+            <p id="prenom">Prénom : </p>
+            <p id="age">Age : </p>
+            <br>
+            <input type="text" id="n" placeholder="Nom"><br><br>
+            <input type="text" id="pr" placeholder="Prenom"><br><br>
+            <input type="text" id="ag" placeholder="Age"><br><br>
+            <!-- <button id="btn">Affiche</button>
+            <br><br>
+            <!-- <button id="vider">Vider</button> -->
+
+        </div>
+    </fieldset>
+   
+
+    
+</body>
+
+</html>

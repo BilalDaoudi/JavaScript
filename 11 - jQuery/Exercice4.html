@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../jQuery/jquery-3.6.0.js"></script>
+    <title>Document</title>
+    <style>
+        .hh{
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <script>
+        $(document).ready(function (){
+            $("body").append("<div class='hi'> Bienvenue </div> <br>")
+            $("body").append("<div class='hh'></div><br>")
+            $("body").append("<div class='hh'></div><br>")
+            $("body").append("<button id='hide'>Hide</button>")
+            $("body").append("<button id='show'>Show</button>")
+            $("#hide").click(function (){
+                $(".hi").hide()
+            })
+            $("#show").click(function (){
+                $(".hi").show()
+            })
+
+        })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery</title>
+    <script src="C:/Programmation/jQuery/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                $("#divred").fadeIn();
+                $("#divgreen").fadeIn("slow");
+                $("#divblue").fadeIn(3000);
+            });
+        });
+
+        $(document).ready(function () {
+            $("#btn2").click(function () {
+                $("#divred").fadeOut();
+                $("#divgreen").fadeOut("slow");
+                $("#divblue").fadeOut(3000);
+            });
+        });
+
+        $(document).ready(function () {
+            $("#btn3").click(function () {
+                $("#divred").fadeToggle();
+                $("#divgreen").fadeToggle("slow");
+                $("#divblue").fadeToggle(3000);
+            });
+        });
+        
+        /*
+        $(document).ready(function () {
+            $("body").mouseenter(function () {
+                $("#divred").fadeToggle();
+                $("#divgreen").fadeToggle("slow");
+                $("#divblue").fadeToggle(3000);
+            });
+        });
+        */
+
+        $(document).ready(function () {
+            $("#btn4").click(function () {
+                $(".blue1").fadeTo("slow", 0.15);;
+                $(".blue2").fadeTo("slow", 0.45);;
+                $(".blue3").fadeTo("slow", 0.75);;
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <p>Demonstrate fadeIn() with different parameters.</p>
+
+    <button id="btn1">fadeIn</button><br><br>
+    <button id="btn2">fadeOut</button><br><br>
+    <button id="btn3">fadeToggle</button><br><br>
+    <button id="btn4">fadeTo</button><br><br>
+
+
+
+    <div id="divred" style="width:80px;height:80px;display:none;background-color:red;"></div><br>
+    <div id="divgreen" style="width:80px;height:80px;display:none;background-color:green;"></div><br>
+    <div id="divblue" style="width:80px;height:80px;display:none;background-color:blue;"></div>
+
+
+    <div class="blue1" style="width:80px;height:80px;display:none;background-color:blue;"></div><br>
+    <div class="blue2" style="width:80px;height:80px;display:none;background-color:blue;"></div><br>
+    <div class="blue3" style="width:80px;height:80px;display:none;background-color:blue;"></div>
+
+</body>
+
+</html>

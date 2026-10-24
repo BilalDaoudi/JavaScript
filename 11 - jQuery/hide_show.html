@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jquery</title>
+  <script src="C:/Programmation/jQuery/jquery-3.6.0.js"></script>
+  <script>
+    /*
+    $(document).ready(function () {
+      $("p").click(function () {
+        $(this).hide();
+      });
+    });
+    */
+
+    
+    /*
+    $(document).ready(function () {
+      $("p").hide(3000);
+      $("div").hide(3000);
+    });
+    */
+
+
+
+    /*
+    $(document).ready(function () {
+      $("button").click(function () {
+        $("div").animate({ left: '250px' });
+        $("div").show(2000);
+        $("p").show(2000);
+      });
+    });
+    */
+
+
+    /*
+    $(document).ready(function () {
+      $("input").mouseenter(function () {
+        $("div").animate({ left: '250px' });
+      });
+    });
+    */
+
+
+    $(document).ready(function () {
+        $("#img2").hide();
+      });
+
+    $(document).ready(function () {
+      $("button").click(function () {
+        $("#img1").hide(5000);
+        $("#img2").show(5000);
+      });
+    });
+
+
+  </script>
+</head>
+
+<body>
+  <button>Start Animation</button>
+
+  <!-- 
+    
+    <p style="background-color: ;">By default, all HTML elements have a static position, and cannot be moved. To manipulate the position, remember to
+    first set the CSS position property of the element to relative, fixed, or absolute!</p>
+
+  <div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+
+<br><br><br><br>
+  <p>If you click on me, I will disappear.</p>
+  <p>Click me away!</p>
+  <p>Click me too!</p>
+
+  <input type="hidden">
+
+  -->
+  <center>
+    <img src="C:/Users/Bilal/Pictures/Photo/daoudi.jfif" id="img1">
+    <img src="C:/Users/Bilal/Pictures/Photo/bilal.webp" id="img2">
+  </center>
+
+
+
+
+</body>
+
+</html>

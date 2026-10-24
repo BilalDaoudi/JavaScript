@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery</title>
+    <script src="C:/Programmation/jQuery/jquery-3.6.0.js"></script>
+    <script>
+        /*
+        $(document).ready(function () {
+            $("input").animate(
+                {
+                    height: '550px',
+                }
+            )
+
+        });
+        */
+
+        $(document).ready(function () {
+            $("input").animate(
+                {
+                    opacity: '0.5',
+                    width: '550px',
+                    height: '550px',
+                    height: 'toggle5000'
+                },5000
+            )
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <div class="form">
+        <input type="text" id="inp1" placeholder="Email"><br>
+        <input type="text" id="inp2" placeholder="Password"><br>
+        <input type="submit" id="inp3" value="Login"><br>
+    </div>
+</body>
+
+</html>

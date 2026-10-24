@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+
+<body>
+    <script>
+        var Personnes = [
+            { "numinscription": 1000, "nom": "Daoudi", "prenom": "Bilal", "age": 19, "ville": "Jaadar", "image": "photo/Bilal.jpeg" },
+            { "numinscription": 1001, "nom": "Aaboub", "prenom": "Med Amine", "age": 19, "ville": "Sarwan", "image": "photo/bo3bo3.jpeg" },
+            { "numinscription": 1002, "nom": "Bouabid", "prenom": "Nouzha", "age": 18, "ville": "Zegangan", "image": "photo/nouzha.jpeg" },
+            { "numinscription": 1003, "nom": "Amghar", "prenom": "Mohamed", "age": 18, "ville": "Bnichiker", "image": "photo/amghar.jpeg" }
+        ]
+
+        var per = { "numinscription": 1004, "nom": "El farfachi", "prenom": "Mohamed", "age": 19, "ville": "Ibarakan", "image": "photo/farfach.jpeg" }
+        Personnes.push(per)
+
+        function Choisir_Stagiaire() {
+            let stagiaire = document.getElementById("stagiaire").value
+            if (stagiaire != "Choisir Stagiaire") {
+                for (i = 0; i < Personnes.length; i++) {
+                    if (Personnes[i].numinscription == stagiaire) {
+                        var img = document.getElementById("img")
+                        img.setAttribute("width", "150px");
+                        img.setAttribute("height", "200px");
+                        img.setAttribute('src', Personnes[i].image);
+                        document.body.appendChild(img);
+                        document.getElementById("nom").innerHTML = "Nom : " + Personnes[i].nom;
+                        document.getElementById("prenom").innerHTML = "Préom : " + Personnes[i].prenom;
+                        document.getElementById("age").innerHTML = "Age : " + Personnes[i].age;
+                        document.getElementById("ville").innerHTML = "Ville : " + Personnes[i].ville;
+                    }
+                }
+            }
+            else {
+                var img = document.getElementById("img")
+                img.setAttribute("width", "0px");
+                img.setAttribute("height", "0px");
+                document.getElementById("nom").innerHTML = "Nom : ";
+                document.getElementById("prenom").innerHTML = "Préom : ";
+                document.getElementById("age").innerHTML = "Age : ";
+                document.getElementById("ville").innerHTML = "Ville : ";
+            }
+        }
+
+        
+    </script>
+    <label for="stagiaire">Choisir le stagiaire :</label>
+    <select id="stagiaire" onchange="Choisir_Stagiaire()">
+        <option id="choisir">Choisir Stagiaire</option>
+        <option id="p1">1000</option>
+        <option id="p2">1001</option>
+        <option id="p3">1002</option>
+        <option id="p4">1003</option>
+        <option id="p4">1004</option>
+    </select>
+    <br>
+    <br>
+
+    <p id="nom">Nom : </p>
+    <p id="prenom">Préom : </p>
+    <p id="age">Age : </p>
+    <p id="ville">Ville : </p>
+    <img id="img">
+
+
+</body>
+
+</html>

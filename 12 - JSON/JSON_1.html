@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stagiaire</title>
+</head>
+
+<body>
+    <script>
+        // JSON
+        var Stagiaire = [
+            { "id": 1022, "nom": "Daoudi", "prenom": "Bilal", "age": "09/12/2002", "photo": "photo/Bilal.jpeg" },
+            { "id": 3265, "nom": "Amghar", "prenom": "Mohamed", "age": "06/5/2002", "photo": "photo/amghar.jpeg" },
+            { "id": 2165, "nom": "Aaboub", "prenom": "Mohamed Amine", "age": "03/08/2002", "photo": "photo/bo3bo3.jpeg" },
+            { "id": 2653, "nom": "Bouabid", "prenom": "Nouzha", "age": "23/02/2004", "photo": "photo/nouzha.jpeg" }
+        ]
+
+
+
+        //window.addEventListener("DOMContentLoaded", 
+        function yy(){
+        for (let i = 0; i < Stagiaire.length; i++) {
+            let table = document.querySelector("table")
+            let tr = document.createElement("tr");
+
+            let td1 = document.createElement("td");
+            td1.setAttribute("class", "id");
+            td1.textContent = Stagiaire[i].id;
+
+            let td2 = document.createElement("td");
+            td2.setAttribute("class", "nom");
+            td2.textContent = Stagiaire[i].nom;
+
+            let td3 = document.createElement("td");
+            td3.setAttribute("class", "prenom");
+            td3.textContent = Stagiaire[i].prenom;
+
+            let td4 = document.createElement("td");
+            td4.setAttribute("class", "age");
+            td4.textContent = Stagiaire[i].age;
+
+            let td5 = document.createElement("td");
+            td5.setAttribute("class", "phpto");
+            let img = document.createElement("img");
+            img.setAttribute("width","100px");
+            img.setAttribute("height","120px");
+            img.setAttribute("src",Stagiaire[i].photo)
+            td5.appendChild(img);
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+
+            table.appendChild(tr);
+        }
+    }
+
+    // Evenement de chargement de page 
+    document.addEventListener("DOMContentLoaded", yy)
+    
+    
+    </script>
+
+
+
+
+    <form>
+        <input type="text" name="nom" id="nom" placeholder="Tapez Nom">
+        <input type="button" value="Filtrer">
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Age</th>
+            <th>Photo</th>
+        </tr>
+    </table>
+</body>
+
+</html>
